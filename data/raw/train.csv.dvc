@@ -1,0 +1,13 @@
+md5: 087d7611a3a490d5f186f49297bb3b63
+frozen: true
+deps:
+- path: input/home-data-for-ml-course/train.csv
+  repo:
+    url: 
+      https://github.com/collab-uniba/Software-Solutions-for-Reproducible-ML-Experiments
+    rev_lock: 45c6096e481915f7d0c7b6c93b936e2e2411d4da
+outs:
+- md5: 80ccab65fb115cbad143dbbd2bcd5577
+  size: 460676
+  hash: md5
+  path: train.csv
