@@ -1,4 +1,4 @@
-md5: 087d7611a3a490d5f186f49297bb3b63
+md5: 8ef0e2f0b752598d7fb879d373c89231
 frozen: true
 deps:
 - path: input/home-data-for-ml-course/train.csv
@@ -9,5 +9,4 @@ deps:
 outs:
 - md5: 80ccab65fb115cbad143dbbd2bcd5577
   size: 460676
-  hash: md5
   path: train.csv
