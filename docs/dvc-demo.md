@@ -5,7 +5,52 @@ simple machine learning project.
 The scrips used in this project are based on the [SE4AI2021Course_DVC-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_DVC-demo)
 project. Hence, the examples uses data from the [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/c/home-data-for-ml-course).
 
-## Import raw data
+## Install DVC
+First, we need to install DVC. We can do this by running the following command:
+
+### Using poetry
+```bash
+poetry add dvc@<3.0
+```
+
+### Using pdm
+```bash
+pdm add dvc<3.0
+```
+
+### Using pipenv
+```bash
+pipenv install "dvc<3.0"
+```
+
+### Using pip
+```bash
+pip install "dvc<3.0"
+```
+
+> **Note:** DagsHub does not support DVC 3.0 and its new hashing mechanism. Please use DVC 2.x for now.
+
+## Initialize DVC
+To initialize DVC in our project. We can do this by running the [`dvc init`](https://dvc.org/doc/command-reference/init) command:
+
+```bash
+dvc init
+```
+
+This will create a `.dvc` directory in our project, and a `.dvcignore` file to specify files that we do not want to track.
+
+## Configure DVC
+Next, we will configure DVC to use a remote storage to store the data and the models. We will use Dagshub Storage as a
+remote since it has 100GB of free storage and has a good integration with DVC. To do this, we first need to create a
+repository in Dagshub or to link our GitHub repository to Dagshub. Then, we can easily configure DVC to use Dagshub
+Storage as its remote by following the instructions in your Dagshub repository.
+
+<p align="center">
+    <img src="static/dagshub-dvc-config.png" width="700" alt="Dagshub Storage configuration">
+</p>
+
+## Working with DVC
+### Import raw data
 As a first step, we will import the raw data using the [`dvc import`](https://dvc.org/doc/command-reference/import) command:
 
 ```bash
@@ -31,7 +76,7 @@ dvc get https://github.com/collab-uniba/Software-Solutions-for-Reproducible-ML-E
 dvc get https://github.com/collab-uniba/Software-Solutions-for-Reproducible-ML-Experiments input/home-data-for-ml-course/test.csv -o data/raw
 ```
 
-## Create a DVC pipeline
+### Create a DVC pipeline
 Now, we will create a DVC pipeline to prepare the data, and train the model. This pipeline will consist of three stages:
 `prepare`, `train`, and `evaluate`. The `prepare` stage will clean the data, and split it into training and validation
 sets. The `train` stage will train a regression model using the training set. Finally, the `evaluate` stage will evaluate
@@ -39,7 +84,7 @@ the model using the validation set.
 
 To create a stage we use the [`dvc stage add`](https://dvc.org/doc/command-reference/stage/add) command.
 
-### Data preparation stage
+#### Data preparation stage
 ```bash
 dvc stage add -n prepare \
 -p prepare.train_size,prepare.test_size,prepare.random_state \
@@ -59,10 +104,10 @@ to be reproduced when the pipeline is executed.
 * `-o`: specify a file or directory that is the result of running the command.
 * The last line, `python src/prepare.py` is the command to run in this stage 
 
-**Note:** DVC uses the pipeline definition to automatically track the data used and produced by any stage, so there's no
+> **Note:** DVC uses the pipeline definition to automatically track the data used and produced by any stage, so there's no
 need to manually run `dvc add` for data/prepared!
 
-### Model training stage
+#### Model training stage
 ```bash
 dvc stage add -n train \
 -p train.random_state,train.algorithm \
@@ -71,7 +116,7 @@ dvc stage add -n train \
 python src/train.py
 ```
 
-### Model evaluation stage
+#### Model evaluation stage
 ```bash
 dvc stage add -n evaluate \
 -d models/iowa_model.pkl -d src/evaluate.py -d data/processed/X_valid.csv -d data/processed/y_valid.csv \
@@ -81,7 +126,7 @@ python src/evaluate.py
 
 In this stage, we use the `-M` option to specify that the stage produces a metrics file that will not be cached by DVC.
 
-## Run the pipeline
+### Run the pipeline
 The details about each stage are automatically stored by DVC in the [`dvc.yaml`](../dvc.yaml) file. We can run the pipeline by executing
 the following command:
 
