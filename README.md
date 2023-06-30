@@ -1,2 +1,5 @@
 # MLOps2023Course-demo
-Demo project for the Machine Learning Systems in Production (MLOps) 2023 course.
+This is a demo project for the Machine Learning Systems in Production (MLOps) 2023-24 course (Universitat Politècnica de Catalunya-BarcelonaTech (UPC), Spain).
+
+## Demos
+[1. DVC demo](docs/dvc-demo.md)
