@@ -1,3 +1,4 @@
+import mlflow
 import pandas as pd
 import pickle
 import yaml
@@ -7,6 +8,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.impute import SimpleImputer
 
+
+mlflow.sklearn.autolog(log_model_signatures=False, log_datasets=False)
 
 # Path of the parameters file
 params_path = Path("params.yaml")
