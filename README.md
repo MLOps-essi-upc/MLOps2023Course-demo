@@ -3,3 +3,5 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
 
 ## Demos
 [1. DVC demo](docs/dvc-demo.md)
+
+[2. MLflow demo](docs/mlflow-demo.md)

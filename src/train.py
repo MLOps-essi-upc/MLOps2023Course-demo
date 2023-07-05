@@ -4,11 +4,10 @@ import pickle
 import yaml
 from pathlib import Path
 from sklearn.tree import DecisionTreeRegressor
-from sklearn.metrics import mean_absolute_error
 from sklearn.ensemble import RandomForestRegressor
-from sklearn.impute import SimpleImputer
 
 
+mlflow.set_experiment("iowa-house-prices")
 mlflow.sklearn.autolog(log_model_signatures=False, log_datasets=False)
 
 # Path of the parameters file

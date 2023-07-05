@@ -61,6 +61,9 @@ MLflow comes with automatic logging APIs for several machine learning frameworks
 [`mlflow.<framework>.autolog()`](https://mlflow.org/docs/latest/tracking.html#automatic-logging) function to automatically
 log the parameters, metrics, and model artifacts from our machine learning code.
 
+> **Note:** Autologging is only supported for certain versions of the frameworks. If you are using the latest version of
+some of these frameworks you might get some errors. See the [MLflow documentation](https://mlflow.org/docs/latest/tracking.html#automatic-logging) for more details.
+
 
 
 
