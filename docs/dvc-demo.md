@@ -91,7 +91,7 @@ dvc stage add -n prepare \
 -d src/prepare.py -d data/raw/train.csv -d data/raw/test.csv \
 -o data/processed/X_train.csv -o data/processed/X_valid.csv \
 -o data/processed/y_train.csv -o data/processed/y_valid.csv \
-python src/prepare.py
+python -m src.prepare
 ```
 
 The options used in the command are the following:
@@ -102,7 +102,7 @@ The options used in the command are the following:
 source code itself is marked as a dependency as well. If any of these files change, DVC will know that this stage needs
 to be reproduced when the pipeline is executed.
 * `-o`: specify a file or directory that is the result of running the command.
-* The last line, `python src/prepare.py` is the command to run in this stage 
+* The last line, `python -m src.prepare` is the command to run in this stage 
 
 > **Note:** DVC uses the pipeline definition to automatically track the data used and produced by any stage, so there's no
 need to manually run `dvc add` for data/prepared!
@@ -113,7 +113,7 @@ dvc stage add -n train \
 -p train.random_state,train.algorithm \
 -d src/train.py -d data/processed/X_train.csv -d data/processed/y_train.csv \
 -o models/iowa_model.pkl \
-python src/train.py
+python -m src.train
 ```
 
 #### Model evaluation stage
@@ -121,7 +121,7 @@ python src/train.py
 dvc stage add -n evaluate \
 -d models/iowa_model.pkl -d src/evaluate.py -d data/processed/X_valid.csv -d data/processed/y_valid.csv \
 -M metrics/scores.json \
-python src/evaluate.py
+python -m src.evaluate
 ```
 
 In this stage, we use the `-M` option to specify that the stage produces a metrics file that will not be cached by DVC.
