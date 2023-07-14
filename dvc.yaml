@@ -1,6 +1,6 @@
 stages:
   prepare:
-    cmd: python src/prepare.py
+    cmd: python -m src.prepare
     deps:
     - data/raw/test.csv
     - data/raw/train.csv
@@ -15,7 +15,7 @@ stages:
     - data/processed/y_train.csv
     - data/processed/y_valid.csv
   train:
-    cmd: python src/train.py
+    cmd: python -m src.train
     deps:
     - data/processed/X_train.csv
     - data/processed/y_train.csv
@@ -26,7 +26,7 @@ stages:
     outs:
     - models/iowa_model.pkl
   evaluate:
-    cmd: python src/evaluate.py
+    cmd: python -m src.evaluate
     deps:
     - data/processed/X_valid.csv
     - data/processed/y_valid.csv

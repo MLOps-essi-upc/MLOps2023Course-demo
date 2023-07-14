@@ -87,5 +87,12 @@ See the [MLflow documentation](https://mlflow.org/docs/latest/tracking.html#auto
 If you are using a framework that is not supported by MLflow or want to log custom parameters, metrics or artifacts, you
 can use the [`mlflow.log_param()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_param),
 [`mlflow.log_metric()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_metric) and
-[`mlflow.log_artifact()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_artifact) functions.
+[`mlflow.log_artifact()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_artifact) functions. See the
+[`evaluate.py`](../src/evaluate.py) file for an example.
 See the [MLflow documentation](https://mlflow.org/docs/latest/tracking.html#logging-data-to-runs) for more details.
+
+## DVC pipelines + MLflow
+You need to keep in mind that MLflow interprets each pipeline step as a run. Therefore, if you are using DVC pipelines
+with MLflow you will have the metrics, parameters and artifacts of each step in separate runs. However, there are some
+workarounds to this problem. See [this](https://www.sicara.fr/blog-technique/dvc-pipeline-runs-mlflow) post about how to
+integrate DVC pipelines and MLflow.

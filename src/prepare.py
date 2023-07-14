@@ -1,9 +1,9 @@
-import yaml
-import pandas as pd
 from pathlib import Path
+
+import pandas as pd
+import yaml
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
-
 
 # Path of the parameters file
 params_path = Path("params.yaml")

@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   prepare:
-    cmd: python src/prepare.py
+    cmd: python -m src.prepare
     deps:
     - path: data/raw/test.csv
       md5: dcec4b79bf9c7317bd9e17789bf888f0
@@ -10,7 +10,7 @@ stages:
       md5: 80ccab65fb115cbad143dbbd2bcd5577
       size: 460676
     - path: src/prepare.py
-      md5: ed147f0ec074d22c5a0a49feb2809869
+      md5: dd7e6789cf8cdf6f29bffdb0cb745ef7
       size: 2546
     params:
       params.yaml:
@@ -31,7 +31,7 @@ stages:
       md5: a06f9b382ed2a355bdf82b09d524f76c
       size: 3267
   train:
-    cmd: python src/train.py
+    cmd: python -m src.train
     deps:
     - path: data/processed/X_train.csv
       md5: 713fe946a53a6f11ea15713d61d3590d
@@ -40,18 +40,18 @@ stages:
       md5: 37e44c3a394132f52cdc69cc50842abd
       size: 13058
     - path: src/train.py
-      md5: aa8d8ee15e19d5a57677a645539abf76
-      size: 1453
+      md5: 569dc606a79d227da23dc93a58e76014
+      size: 1642
     params:
       params.yaml:
         train.algorithm: RandomForestRegressor
         train.random_state: 2023
     outs:
     - path: models/iowa_model.pkl
-      md5: e5d92061faa9fd6baadd961d57561a42
-      size: 11840660
+      md5: 0eb5a1fdf73f203736a34d461764b5e8
+      size: 10659353
   evaluate:
-    cmd: python src/evaluate.py
+    cmd: python -m src.evaluate
     deps:
     - path: data/processed/X_valid.csv
       md5: 33c3586dd60b2f7b336015f3c7a283e3
@@ -60,11 +60,11 @@ stages:
       md5: a06f9b382ed2a355bdf82b09d524f76c
       size: 3267
     - path: models/iowa_model.pkl
-      md5: e5d92061faa9fd6baadd961d57561a42
-      size: 11840660
+      md5: 0eb5a1fdf73f203736a34d461764b5e8
+      size: 10659353
     - path: src/evaluate.py
-      md5: 2c1e25b6faa0cd8e357f185e3c119bd3
-      size: 1231
+      md5: 41dc6caa89072320728166791af59ff2
+      size: 1750
     outs:
     - path: metrics/scores.json
       md5: b074bacca8be080f3f852a1c188bd57a
