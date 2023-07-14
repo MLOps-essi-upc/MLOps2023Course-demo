@@ -22,3 +22,10 @@ To start using Git, we need to initialize a repository. This can be done with th
 git init
 ```
 This will create a hidden folder called `.git` in the current directory. This folder contains all the information about the repository.
+
+## Git remote
+To work with a remote repository, we need to add it to our local repository. This can be done with the following command:
+```bash
+git remote add origin url-to-remote-repository
+```
+
