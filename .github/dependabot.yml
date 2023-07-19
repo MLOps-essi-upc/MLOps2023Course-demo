@@ -11,17 +11,19 @@ updates:
       interval: "monthly"
     groups:
       dev-dependencies:
-        - "isort"
-        - "black"
-        - "pytest*"
-        - "pylint"
-        - "bandit"
+        patterns:
+          - "isort"
+          - "black"
+          - "pytest*"
+          - "pylint"
+          - "bandit"
       app-dependencies:
-        - "pandas"
-        - "scikit-learn"
-        - "python-dotenv"
-        - "dvc"
-        - "mlflow"
+        patterns:
+          - "pandas"
+          - "scikit-learn"
+          - "python-dotenv"
+          - "dvc"
+          - "mlflow"
     labels:
       - "poetry"
       - "dependencies"
