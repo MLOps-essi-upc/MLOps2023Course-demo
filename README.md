@@ -21,6 +21,7 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
         <tr>
             <td>Project coordination and communication</td>
             <td>Taiga, Trello, Slack</td>
+            <td></td>
         </tr>
         <tr>
             <td rowspan="3"><b>Milestone 2 &mdash; Model building: repoducibility</b></td>
