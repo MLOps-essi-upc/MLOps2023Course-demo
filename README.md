@@ -54,7 +54,7 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
             </td>
         </tr>
         <tr>
-            <td rowspan="2"><b>Milestone 4 &mdash; Model deployment: API</b></td>
+            <td rowspan="3"><b>Milestone 4 &mdash; Model deployment: API</b></td>
             <td>ML system design</td>
             <td>Cloud platform selected by the students (VMs, Heroku, DigitalOcean, etc.)</td>
             <td></td>
@@ -63,6 +63,11 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
             <td>APIs for ML</td>
             <td>FastAPI and Pytest (to test the API endpoints)</td>
             <td><a href="docs/fastapi-demo.md">FastAPI demo</a></td>
+        </tr>
+        <tr>
+            <td>Deploying on cloud providers</td>
+            <td>FastAPI, cloud platform, CodeCarbon</td>
+            <td><a href="docs/deployment/">Deployment</a></td>
         </tr>
     </tbody>
 </table>
