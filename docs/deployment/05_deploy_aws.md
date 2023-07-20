@@ -1,6 +1,3 @@
-**ToDo:**
-
-- [x] 
 
 -------------------
 # AWS setup: How to deploy ML models in a AWS VM?

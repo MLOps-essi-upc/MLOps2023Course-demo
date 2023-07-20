@@ -1,9 +1,3 @@
-**ToDo:**
-
-- [x] Add all problems in this directory
-- [x] Organize
-- [ ] Update if new problems
-
 -------------------
 - [FAQ and issues arised during deployment](#faq-and-issues-arised-during-deployment)
   - [Hugging Face issues](#hugging-face-issues)

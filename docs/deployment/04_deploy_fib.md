@@ -1,6 +1,3 @@
-**ToDo:**
-
-- [x] 
 
 -------------------
 # Private cloud Virtech setup: How to deploy ML models in a private cloud VM (Virtech)?
