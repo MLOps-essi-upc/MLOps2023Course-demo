@@ -14,7 +14,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/hf/hf_hub_01.png"
+  src="../static/deployment/hf/hf_hub_01.png"
 </figure></center>
 <p style="text-align: center;">Hugging Face Model Hub.</p>
 
@@ -22,7 +22,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/hf/hf_pythia_choose_02.png"
+  src="../static/deployment/hf/hf_pythia_choose_02.png"
 </figure></center>
 <p style="text-align: center;">Hugging Face: Pythia-70m by EleutherAI.</p>
 
@@ -30,7 +30,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/hf/hf_pythia_load_03.png"
+  src="../static/deployment/hf/hf_pythia_load_03.png"
 </figure></center>
 <p style="text-align: center;">Hugging Face: Pythia-70m code example.</p>
 
@@ -150,13 +150,13 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/hf/hf_pythia_ui_04.png"
+  src="../static/deployment/hf/hf_pythia_ui_04.png"
 </figure></center>
 <p style="text-align: center;">Swagger UI.</p>
 
 <center><figure>
   <img
-  src="images/hf/hf_pythia_execute_05.png"
+  src="../static/deployment/hf/hf_pythia_execute_05.png"
 </figure></center>
 <p style="text-align: center;">Execute prediction using Pythia-70m.</p>
 
@@ -164,7 +164,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/hf/hf_pythia_response_06.png"
+  src="../static/deployment/hf/hf_pythia_response_06.png"
 </figure></center>
 <p style="text-align: center;">Response using Pythia-70m.</p>
 
@@ -345,13 +345,13 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/h5/h5_ui_01.png"
+  src="../static/deployment/h5/h5_ui_01.png"
 </figure></center>
 <p style="text-align: center;">Swagger UI: CNN model.</p>
 
 <center><figure>
   <img
-  src="images/h5/h5_execute_02.png"
+  src="../static/deployment/h5/h5_execute_02.png"
 </figure></center>
 <p style="text-align: center;">Execute prediction using h5 CNN model.</p>
 
@@ -359,7 +359,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
 <center><figure>
   <img
-  src="images/h5/h5_response_03.png"
+  src="../static/deployment/h5/h5_response_03.png"
 </figure></center>
 <p style="text-align: center;">Response using h5 CNN model.</p>
 

@@ -42,7 +42,7 @@ In detail:
 
 <center><figure>
   <img
-  src="images/api/01_api_running.png"
+  src="../static/deployment/api/01_api_running.png"
 </figure></center>
 <p style="text-align: center;">API running.</p>
 
@@ -75,7 +75,7 @@ Visit [Swagger UI](http://localhost:5000/docs) in http://localhost:5000/docs for
 
 <center><figure>
   <img
-  src="images/api/01_api_ui.png"
+  src="../static/deployment/api/01_api_ui.png"
 </figure></center>
 <p style="text-align: center;">API User Interface in localhost:5000/docs endpoint.</p>
 
@@ -86,14 +86,14 @@ You should obtain a "200" code response after executing the POST method of the m
 
 <figure>
   <img
-  src="images/api/01_api_response_ui.png"
+  src="../static/deployment/api/01_api_response_ui.png"
 </figure>
 <p style="text-align: center;">API response on Swagger UI.</p>
 
 
 <center><figure>
   <img
-  src="images/api/01_api_response_terminal.png"
+  src="../static/deployment/api/01_api_response_terminal.png"
 </figure></center>
 <p style="text-align: center;">API response on terminal.</p>
 
