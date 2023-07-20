@@ -1,6 +1,3 @@
-**ToDo:**
-
-- [x] 
 
 -------------------
 # GCP setup: How to deploy ML models in a GCP VM?

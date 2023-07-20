@@ -1,7 +1,3 @@
-**ToDo:**
-
-- [x] 
-
 -------------------
 # API: creation and deployment
 

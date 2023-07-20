@@ -1,10 +1,3 @@
-**ToDo:**
-
-- [x] Add images
-- [x] Info
-- [x] Update references to this file
-- [x] HuggingFace
-- [x] hdf5
 
 -------------
 - [Add pretrained model](#add-pretrained-model)
