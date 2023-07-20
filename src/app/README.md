@@ -3,4 +3,4 @@
 
 ## How to run API?
 
-See manuals/api.md for more information
+See docs/deployment/01_create_api.md for more information
