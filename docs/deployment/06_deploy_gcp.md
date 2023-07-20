@@ -9,7 +9,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_welcome_screen.png"
+  src="../static/deployment/gcp/gcp_welcome_screen.png"
 </figure></center>
 <p style="text-align: center;">Welcome screen.</p>
 
@@ -17,7 +17,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_vm_selection.png"
+  src="../static/deployment/gcp/gcp_vm_selection.png"
 </figure></center>
 <p style="text-align: center;">VM instances.</p>
 
@@ -25,7 +25,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_create_instance_03.png"
+  src="../static/deployment/gcp/gcp_create_instance_03.png"
 </figure></center>
 <p style="text-align: center;">Create VM instance.</p>
 
@@ -36,7 +36,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_configure_instance_04.png"
+  src="../static/deployment/gcp/gcp_configure_instance_04.png"
 </figure></center>
 <p style="text-align: center;">Configure instance.</p>
 
@@ -44,7 +44,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_configure_image_05.png"
+  src="../static/deployment/gcp/gcp_configure_image_05.png"
 </figure></center>
 <p style="text-align: center;">OS image configuration.</p>
 
@@ -54,7 +54,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_pricing_07.png"
+  src="../static/deployment/gcp/gcp_pricing_07.png"
 </figure></center>
 <p style="text-align: center;">Pricing.</p>
 
@@ -64,7 +64,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_ip.png"
+  src="../static/deployment/gcp/gcp_ip.png"
 </figure></center>
 <p style="text-align: center;">Get public IP.</p>
 
@@ -72,7 +72,7 @@
     
 <center><figure>
   <img
-  src="images/gcp/gcp_ssh_in_browser.png"
+  src="../static/deployment/gcp/gcp_ssh_in_browser.png"
 </figure></center>
 <p style="text-align: center;">SSH-in-browser</p>
 
@@ -91,7 +91,7 @@
 
 <center><figure>
   <img
-  src="images/gcp/gcp_add_ssh_08.png"
+  src="../static/deployment/gcp/gcp_add_ssh_08.png"
 </figure></center>
 <p style="text-align: center;">Adding SSH keys.</p>
 

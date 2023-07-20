@@ -15,13 +15,13 @@
 
 <center><figure>
   <img
-  src="images/virtech/virtech_ifconfig.png"
+  src="../static/deployment/virtech/virtech_ifconfig.png"
 </figure></center>
 <p style="text-align: center;">Get public IP.</p>
 
 <center><figure>
   <img
-  src="images/virtech/virtech_ssh.png"
+  src="../static/deployment/virtech/virtech_ssh.png"
 </figure></center>
 <p style="text-align: center;">SSH connection.</p>
 

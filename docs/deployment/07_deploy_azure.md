@@ -11,7 +11,7 @@
 
 <center><figure>
   <img
-  src="images/azure/azure_portal_01.png"
+  src="../static/deployment/azure/azure_portal_01.png"
 </figure></center>
 <p style="text-align: center;">Azure portal.</p>
 
@@ -19,7 +19,7 @@
 
 <center><figure>
   <img
-  src="images/azure/azure_vm_02.png"
+  src="../static/deployment/azure/azure_vm_02.png"
 </figure></center>
 <p style="text-align: center;">Azure Vrtual Machines.</p>
 
@@ -30,25 +30,25 @@
 
 <center><figure>
   <img
-  src="images/azure/azure_details_03.png"
+  src="../static/deployment/azure/azure_details_03.png"
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
 <center><figure>
   <img
-  src="images/azure/azure_details_04.png"
+  src="../static/deployment/azure/azure_details_04.png"
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
 <center><figure>
   <img
-  src="images/azure/azure_details_05.png"
+  src="../static/deployment/azure/azure_details_05.png"
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
 <center><figure>
   <img
-  src="images/azure/azure_details_06.png"
+  src="../static/deployment/azure/azure_details_06.png"
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
@@ -57,7 +57,7 @@
 
 <center><figure>
   <img
-  src="images/azure/azure_running_07.png"
+  src="../static/deployment/azure/azure_running_07.png"
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 

@@ -6,13 +6,13 @@
 
 <center><figure>
   <img
-  src="images/aws/aws_free_tier_01.png"
+  src="../static/deployment/aws/aws_free_tier_01.png"
 </figure></center>
 <p style="text-align: center;">AWS free tier account creation.</p>
 
 <center><figure>
   <img
-  src="images/aws/aws_select_account_type.png"
+  src="../static/deployment/aws/aws_select_account_type.png"
 </figure></center>
 <p style="text-align: center;">Account type.</p>
 
@@ -33,7 +33,7 @@
    - Select an Ubuntu image
 <center><figure>
   <img
-  src="images/aws/aws_os_image.png"
+  src="../static/deployment/aws/aws_os_image.png"
 </figure></center>
 <p style="text-align: center;">VM image.</p>
 
@@ -42,7 +42,7 @@
 
 <center><figure>
   <img
-  src="images/aws/aws_instance_02.png"
+  src="../static/deployment/aws/aws_instance_02.png"
 </figure></center>
 <p style="text-align: center;">Free tier elegible instance.</p>
 
@@ -54,7 +54,7 @@
 
 <center><figure>
   <img
-  src="images/aws/aws_instance_03.png"
+  src="../static/deployment/aws/aws_instance_03.png"
 </figure></center>
 <p style="text-align: center;">Configure storage.</p>
 
