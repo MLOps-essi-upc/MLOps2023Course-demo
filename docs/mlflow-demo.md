@@ -91,6 +91,14 @@ can use the [`mlflow.log_param()`](https://mlflow.org/docs/latest/python_api/mlf
 [`evaluate.py`](../src/evaluate.py) file for an example.
 See the [MLflow documentation](https://mlflow.org/docs/latest/tracking.html#logging-data-to-runs) for more details.
 
+## MLflow UI
+MLflow provides a UI to visualize the experiments, runs and artifacts. When using Dagshub as a tracking server, we can
+get the MLflow UI URL by clicking on the remote icon and opening the experiments tab.
+
+<p align="center">
+    <img src="static/mlflow-gui.png" width="700" alt="Dagshub MLflow UI">
+</p>
+
 ## DVC pipelines + MLflow
 You need to keep in mind that MLflow interprets each pipeline step as a run. Therefore, if you are using DVC pipelines
 with MLflow you will have the metrics, parameters and artifacts of each step in separate runs. However, there are some
