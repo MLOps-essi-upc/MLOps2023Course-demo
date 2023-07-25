@@ -27,6 +27,8 @@ This repository is tested on Python 3.6+, Flax 0.3.2+, PyTorch 1.3.1+ and Tensor
 
 """
 
+import csv
+import os
 import pickle
 from datetime import datetime
 from functools import wraps
@@ -35,18 +37,30 @@ from pathlib import Path
 from typing import Dict, List
 
 from fastapi import FastAPI, Request
-
-from app.schemas import IrisType, PredictPayload, PredictBert, PredictT5, PredictCNN, PredictCodeGen, PredictPythia_70m, PredictCodet5p_220m
-
-#from transformers import pipeline
-
-# Local modules
-from app.models import LMBERTModel, Model, T5Model, CNNModel, CodeGenModel, Pythia_70mModel, Codet5p_220mModel
-
 from fastapi.responses import FileResponse
 
-import csv
-import os
+# Local modules
+from app.models import (
+    CNNModel,
+    CodeGenModel,
+    Codet5p_220mModel,
+    LMBERTModel,
+    Model,
+    Pythia_70mModel,
+    T5Model,
+)
+from app.schemas import (
+    IrisType,
+    PredictBert,
+    PredictCNN,
+    PredictCodeGen,
+    PredictCodet5p_220m,
+    PredictPayload,
+    PredictPythia_70m,
+    PredictT5,
+)
+
+# from transformers import pipeline
 
 
 print("------------------------modules loaded!------------------------")
@@ -101,7 +115,6 @@ def _load_models():
             model_wrapper = pickle.load(file)
             model_wrappers_list.append(model_wrapper)
 
-    
 
 @app.get("/", tags=["General"])  # path operation decorator
 @construct_response
@@ -158,7 +171,6 @@ def _predict(request: Request, type: str, payload: PredictPayload):
     model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     if model_wrapper:
-
         prediction = model_wrapper["model"].predict(features)
         prediction = int(prediction[0])
         predicted_type = IrisType(prediction).name
@@ -190,27 +202,27 @@ def _predict(request: Request, type: str, payload: PredictPayload):
 @construct_response
 def _predict_bert(request: Request, payload: PredictBert):
     """bert-base-uncased model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = LMBERTModel()
     print(f"Model: {model.name}")
 
     if input_text:
         prediction = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": prediction,
-                #"predicted_type": predicted_type,
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -225,27 +237,27 @@ def _predict_bert(request: Request, payload: PredictBert):
 @construct_response
 def _predict_t5(request: Request, payload: PredictT5):
     """T5 model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = T5Model()
     print(f"Model: {model.name}")
 
     if input_text:
         prediction = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": prediction,
-                #"predicted_type": predicted_type,
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -260,27 +272,27 @@ def _predict_t5(request: Request, payload: PredictT5):
 @construct_response
 def _predict_codegen(request: Request, payload: PredictCodeGen):
     """CodeGen model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = CodeGenModel()
     print(f"Model: {model.name}")
 
     if input_text:
         prediction = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": prediction,
-                #"predicted_type": predicted_type,
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -291,32 +303,31 @@ def _predict_codegen(request: Request, payload: PredictCodeGen):
     return response
 
 
-
 @app.post("/huggingface_models/Pythia_70m", tags=["Hugging Face Models"])
 @construct_response
 def _predict_pythia_70m(request: Request, payload: PredictPythia_70m):
     """T5 model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = Pythia_70mModel()
     print(f"Model: {model.name}")
 
     if input_text:
         prediction = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": prediction,
-                #"predicted_type": predicted_type,
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -331,27 +342,27 @@ def _predict_pythia_70m(request: Request, payload: PredictPythia_70m):
 @construct_response
 def _predict_codet5p_220m(request: Request, payload: PredictCodet5p_220m):
     """Codet5p_220m model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = Codet5p_220mModel()
     print(f"Model: {model.name}")
 
     if input_text:
         prediction = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": prediction,
-                #"predicted_type": predicted_type,
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -366,29 +377,29 @@ def _predict_codet5p_220m(request: Request, payload: PredictCodet5p_220m):
 @construct_response
 def _predict_cnn(request: Request, payload: PredictCNN):
     """CNN model."""
-    
-    input_text = payload.input_text 
+
+    input_text = payload.input_text
     print("Input text")
     print(input_text)
-    #model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    # model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
 
     model = CNNModel()
     print(f"Model: {model.name}")
 
     if input_text:
-        #prediction = model.predict(image)
+        # prediction = model.predict(image)
         model_response = model.predict(input_text)
-        
+
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                #"model-type": model_wrapper["type"],
+                # "model-type": model_wrapper["type"],
                 "model-type": model.name,
                 "input_text": input_text,
                 "prediction": model_response,
-                #"is_correct": model_response['is_correct'],
-                #"predicted_type": predicted_type,
+                # "is_correct": model_response['is_correct'],
+                # "predicted_type": predicted_type,
             },
         }
     else:
@@ -398,17 +409,22 @@ def _predict_cnn(request: Request, payload: PredictCNN):
         }
     return response
 
+
 header = "timestamp,project_name,experiment_id,run_id,duration,emissions,emissions_rate,cpu_power,gpu_power,ram_power,cpu_energy,gpu_energy,ram_energy,energy_consumed,country_name,country_iso_code,region,cloud_provider,cloud_region,os,python_version,cpu_count,cpu_model,gpu_count,gpu_model,longitude,latitude,ram_total_size,tracking_mode,on_cloud"
 example = "2022-11-26T10:32:27,codecarbon,cc2e23fa-52a8-4ea3-a4dc-f039451bcdc4,0.871192216873169,4.1067831054495705e-07,0.0004713980480897,7.5,0.0,1.436851501464844,1.8141875664393104e-06,0,3.472772259025685e-07,2.161464792341879e-06,Spain,ESP,catalonia,,,Linux-5.15.0-53-generic-x86_64-with-glibc2.35,3.10.6,4,AMD Ryzen 5 3500U with Radeon Vega Mobile Gfx,,,2.2586,41.9272,3.83160400390625,machine,N"
 
-@app.get("/results", responses={200: {"description": "CSV file containing all of the information collected from each inference call made until now.", 
-                                     "content": {"text/csv": {"example": header + "\n" + example}}
-                                     }
-                                }
-        )
+
+@app.get(
+    "/results",
+    responses={
+        200: {
+            "description": "CSV file containing all of the information collected from each inference call made until now.",
+            "content": {"text/csv": {"example": header + "\n" + example}},
+        }
+    },
+)
 def results(file: str = "emissions.csv"):
     file_path = file
     if os.path.exists(file_path):
         return FileResponse(file_path, media_type="text/csv")
-    return {"error" : "File not found!"}
-
+    return {"error": "File not found!"}

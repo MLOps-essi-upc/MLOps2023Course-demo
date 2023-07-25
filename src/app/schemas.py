@@ -22,6 +22,7 @@ class PredictPayload(BaseModel):
             }
         }
 
+
 class PredictBert(BaseModel):
     input_text: str
 
@@ -31,6 +32,7 @@ class PredictBert(BaseModel):
                 "input_text": "He is working as [MASK] in the university",
             }
         }
+
 
 class PredictT5(BaseModel):
     input_text: str
@@ -42,6 +44,7 @@ class PredictT5(BaseModel):
             }
         }
 
+
 class PredictCodeGen(BaseModel):
     input_text: str
 
@@ -51,6 +54,7 @@ class PredictCodeGen(BaseModel):
                 "input_text": "def hello_world():",
             }
         }
+
 
 class PredictPythia_70m(BaseModel):
     input_text: str
@@ -62,6 +66,7 @@ class PredictPythia_70m(BaseModel):
             }
         }
 
+
 class PredictCodet5p_220m(BaseModel):
     input_text: str
 
@@ -72,6 +77,7 @@ class PredictCodet5p_220m(BaseModel):
             }
         }
 
+
 class PredictCNN(BaseModel):
     input_text: str
 
@@ -81,6 +87,7 @@ class PredictCNN(BaseModel):
                 "input_text": "10",
             }
         }
+
 
 class IrisType(Enum):
     setosa = 0

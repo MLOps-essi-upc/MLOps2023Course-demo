@@ -1,69 +1,61 @@
-# codecarbon
-https://mlco2.github.io/codecarbon/usage.html
-https://github.com/dani-kjh/TFG_replication_package/blob/main/src/app.py
-https://fastapi.tiangolo.com/advanced/custom-response/
-https://mlco2.github.io/codecarbon/parameters.html
+# CodeCarbon Demo
+In this demo we will see the main features of [CodeCarbon](https://mlco2.github.io/codecarbon/index.html), a Python package
+to track the carbon emissions of machine learning projects.
 
-## How to use codecarbon
-1. Install codecarbon module
+## Install CodeCarbon
+First, we need to install CodeCarbon. We can do this by running the following command:
+
+### Using poetry
 ```bash
-    pip install codecarbon
+poetry add codecarbon
 ```
 
-2. Using this code that makes a prediction using the T5 model
-
-```python
-from transformers import T5Tokenizer, T5ForConditionalGeneration
-
-tokenizer = T5Tokenizer.from_pretrained("t5-small")
-model = T5ForConditionalGeneration.from_pretrained("t5-small", low_cpu_mem_usage=True)
-
-def infer_t5(text):
-    input_ids = tokenizer(text, return_tensors="pt").input_ids
-    outputs = model.generate(input_ids)
-
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-text = "Hello men, this is a test to get the energy metrics of a inference using a machine learning model"
-
-infer_t5(text)
+### Using pdm
+```bash
+pdm add codecarbon
 ```
 
-3. Import the decorator and decorate the function that will be tracked
+### Using pipenv
+```bash
+pipenv install codecarbon
+```
 
+### Using pip
+```bash
+pip install codecarbon
+```
+
+## Tracking emissions
+There are three ways to track the emissions of a machine learning project with CodeCarbon:
+
+### Using the `EmissionsTracker` class
 ```python
-from transformers import T5Tokenizer, T5ForConditionalGeneration
+from codecarbon import EmissionsTracker
+
+tracker = EmissionsTracker()
+tracker.start()
+# Your training code here
+tracker.stop()
+```
+
+### Using the `EmissionsTracker` context manager
+```python
+from codecarbon import EmissionsTracker
+
+with EmissionsTracker() as tracker:
+    # Your training code here
+```
+
+### Using the `track_emissions` decorator
+```python
 from codecarbon import track_emissions
 
-tokenizer = T5Tokenizer.from_pretrained("t5-small")
-model = T5ForConditionalGeneration.from_pretrained("t5-small", low_cpu_mem_usage=True)
-
 @track_emissions
-def infer_t5(text):
-    input_ids = tokenizer(text, return_tensors="pt").input_ids
-    outputs = model.generate(input_ids)
-
-    return tokenizer.decode(outputs[0], skip_special_tokens=True)
-
-text = "Hello men, this is a test to get the energy metrics of a inference using a machine learning model"
-
-infer_t5(text)
+def training_function():
+    # Your training code here
 ```
 
-4. You should get the measurements in the output:
-```bash
-[codecarbon INFO @ 12:48:11]   Available RAM : 15.837 GB
-[codecarbon INFO @ 12:48:11]   CPU count: 8
-[codecarbon INFO @ 12:48:11]   CPU model: Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz
-[codecarbon INFO @ 12:48:11]   GPU count: None
-[codecarbon INFO @ 12:48:11]   GPU model: None
-D:\GAISSA\cloud-api\lib\site-packages\transformers\generation\utils.py:1313: UserWarning: Using `max_length`'s default (20) to control the generation length. This behaviour is deprecated and will be removed from the config in v5 of Transformers -- we recommend using `max_new_tokens` to control the maximum length of the generation.
-  warnings.warn(
-[codecarbon INFO @ 12:48:15]
-Graceful stopping: collecting and writing information.
-Please wait a few seconds...
-[codecarbon INFO @ 12:48:15] Energy consumed for RAM : 0.000001 kWh. RAM Power : 5.93895149230957 W
-[codecarbon INFO @ 12:48:15] Energy consumed for all CPUs : 0.000002 kWh. Total CPU Power : 12.5 W
-[codecarbon INFO @ 12:48:15] 0.000003 kWh of electricity used since the beginning.
-[codecarbon INFO @ 12:48:15] Done!
-```
+
+For an example on how to use CodeCarbon and log the emissions to MLflow, see the [`train.py`](../src/train.py) file.
+
+For more information on each of these methods and their parameters, see the [CodeCarbon documentation](https://mlco2.github.io/codecarbon/usage.html)

@@ -5,11 +5,13 @@ import yaml
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 
+from src import PROCESSED_DATA_DIR, RAW_DATA_DIR
+
 # Path of the parameters file
 params_path = Path("params.yaml")
 
 # Path of the input data folder
-input_folder_path = Path("data/raw")
+input_folder_path = RAW_DATA_DIR
 
 # Path of the files to read
 train_path = input_folder_path / "train.csv"
@@ -67,7 +69,7 @@ X_valid = imputed_X_valid
 
 # Path of the output data folder
 Path("data/processed").mkdir(exist_ok=True)
-prepared_folder_path = Path("data/processed")
+prepared_folder_path = PROCESSED_DATA_DIR
 
 X_train_path = prepared_folder_path / "X_train.csv"
 y_train_path = prepared_folder_path / "y_train.csv"

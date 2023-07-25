@@ -4,8 +4,11 @@ from pathlib import Path
 import mlflow
 import pandas as pd
 import yaml
+from codecarbon import EmissionsTracker
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.tree import DecisionTreeRegressor
+
+from src import METRICS_DIR, MODELS_DIR, PROCESSED_DATA_DIR, RAW_DATA_DIR, ROOT_DIR
 
 mlflow.set_experiment("iowa-house-prices")
 mlflow.sklearn.autolog(log_model_signatures=False, log_datasets=False)
@@ -15,7 +18,7 @@ with mlflow.start_run():
     params_path = Path("params.yaml")
 
     # Path of the prepared data folder
-    input_folder_path = Path("data/processed")
+    input_folder_path = PROCESSED_DATA_DIR
 
     # Read training dataset
     X_train = pd.read_csv(input_folder_path / "X_train.csv")
@@ -39,15 +42,28 @@ with mlflow.start_run():
     elif params["algorithm"] == "RandomForestRegressor":
         algorithm = RandomForestRegressor
 
-    # For the sake of reproducibility, I set the `random_state`
+    # For the sake of reproducibility, set the `random_state`
     iowa_model = algorithm(random_state=params["random_state"])
 
-    # Then I fit the model to the training data
-    iowa_model.fit(X_train, y_train)
+    # Track the CO2 emissions of training the model
+    emissions_output_folder = METRICS_DIR
+    with EmissionsTracker(
+        output_dir=emissions_output_folder,
+        output_file="emissions.csv",
+        on_csv_write="update",
+    ):
+        # Then fit the model to the training data
+        iowa_model.fit(X_train, y_train)
 
-    # Eventually I save the model as a pickle file
+    # Log the CO2 emissions to MLflow
+    emissions = pd.read_csv(emissions_output_folder / "emissions.csv")
+    emissions_metrics = emissions.iloc[-1, 4:13].to_dict()
+    emissions_params = emissions.iloc[-1, 13:].to_dict()
+    mlflow.log_params(emissions_params)
+    mlflow.log_metrics(emissions_metrics)
+
+    # Save the model as a pickle file
     Path("models").mkdir(exist_ok=True)
-    output_folder_path = Path("models")
 
-    with open(output_folder_path / "iowa_model.pkl", "wb") as pickle_file:
+    with open(MODELS_DIR / "iowa_model.pkl", "wb") as pickle_file:
         pickle.dump(iowa_model, pickle_file)
