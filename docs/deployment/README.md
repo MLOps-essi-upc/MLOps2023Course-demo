@@ -1,19 +1,13 @@
-## Guide
-
-1. [API creation](01_create_api.md). Guide to create an API to deploy ML models.
-2. [Add pretrained model](02_add_models.md). Guide to add pretrained ML models (from HuggingFace, hdf5 format, pickle format) to do inferences through an API.
-3. [Deploy ML models in a cloud provider (General)](03_deploy_general.md). Guide to deploy ML models using an API in a cloud provider.
-4. [Deploy in Virtech](04_deploy_fib.md). Virtech setup, Guide to deploy ML models using an API in an AWS VM.
-5. [AWS](05_deploy_aws.md). AWS setup, Guide to deploy ML models using an API in an AWS VM.
-6. [GCP](06_deploy_gcp.md). GCP setup, Guide to deploy ML models using an API in an GCP VM.
-7. [Azure](07_deploy_azure.md). Azure setup, Guide to deploy ML models using an API in an Azure VM.
-8. [CodeCarbon guide](codecarbon.md). Guide to use codecarbon to track metrics during the models' inference.
-9. [FAQ](FAQ.md). Documentation with problems arised during deployments.
-
-
+## Guides
+1. [Deploy ML models in a cloud provider (General)](01_deploy_general.md). Guide to deploy ML models using an API in a 
+cloud provider.
+3. [Deploy in Virtech](02_deploy_fib.md). Guide to deploy ML models using an API in Virtech, the UPC cloud provider.
+4. [Deploy in AWS](03_deploy_aws.md). Guide to deploy ML models using an API in an AWS VM.
+5. [Deploy in GCP](04_deploy_gcp.md). Guide to deploy ML models using an API in an GCP VM.
+6. [Deploy in Azure](05_deploy_azure.md). Guide to deploy ML models using an API in an Azure VM.
+7. [FAQ](FAQ.md). Documentation with problems arised during deployments.
 
 ## Cloud providers
-
 <pre/>
 - Amazon Elastic Compute Cloud (Amazon EC2) from Amazon Web Services (AWS)
   | URL: https://aws.amazon.com/
