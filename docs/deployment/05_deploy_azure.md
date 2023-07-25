@@ -7,7 +7,8 @@
   - You have $200 free credit and expires in 29 days
 
 2. **Sign in to Azure Portal.** 
-  - Go to the Azure portal (https://portal.azure.com/) and sign in with your Azure account credentials. Sign up if you do not have an account.
+  - Go to the Azure portal (https://portal.azure.com/) and sign in with your Azure account credentials. Sign up if you
+    do not have an account.
 
 <center><figure>
   <img
@@ -26,7 +27,9 @@
 4. **Configurate your VM.** 
    - Configure the instance details. Allow SSH traffic and HTTPS traffic from the internet.
    - Create and review
-   - When the Generate new key pair window opens, select Download private key and create resource. Your key file will be download as azurevmkey.pem. Make sure you know where the .pem file was downloaded; you will need the path to it in the next step.
+   - When the Generate new key pair window opens, select Download private key and create resource. Your key file will be
+    download as azurevmkey.pem. Make sure you know where the .pem file was downloaded; you will need the path to it in
+    the next step.
 
 <center><figure>
   <img
@@ -62,12 +65,14 @@
 <p style="text-align: center;">Azure VM details.</p>
 
 6.   **Access your Instance via SSH.** 
-     - Once the instances are launched, you can connect to them using SSH. Open your terminal or SSH client and use the downloaded private key file to establish an SSH connection to your instance. The command typically looks like this:
+     - Once the instances are launched, you can connect to them using SSH. Open your terminal or SSH client and use the
+      downloaded private key file to establish an SSH connection to your instance. The command typically looks like this:
      ```shell
      ssh -i /path/to/private_key.pem username@public_ip
      ```
 
-     - Replace /path/to/private_key.pem with the actual path to your private key file, username with the appropriate username, and public_ip with the public DNS name or IP address of your instance.
+     - Replace /path/to/private_key.pem with the actual path to your private key file, username with the appropriate
+      username, and public_ip with the public DNS name or IP address of your instance.
      - See also [Step 3](03_deploy_general.md)
 
 7.  **Clone repository. See [03_deploy_general.md: Step 4](03_deploy_general.md)**

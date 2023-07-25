@@ -29,7 +29,8 @@
 </figure></center>
 <p style="text-align: center;">Create VM instance.</p>
 
-6. Select the desired configuration for the virtual machine, such as machine type, CPU, memory, and storage options. Allow https traffic.
+6. Select the desired configuration for the virtual machine, such as machine type, CPU, memory, and storage options. 
+Allow https traffic.
 - In this case we use: N2 series, 8GB RAM and 30 GB of storage.
 - Region: europe-southwest
 
@@ -50,7 +51,9 @@
 
 8. Configure the additional settings as per your requirements, including the region, network settings, and SSH access.
 
-9. Review the configuration and click on the "Create" button to create your virtual machine. Note the monthly estimate is \$68 and we have \$300 credit, in that case we will not exceed the free resources. However, you can also set a Budget for your project, and set alarms (See https://cloud.google.com/billing/docs/how-to/budgets).
+9. Review the configuration and click on the "Create" button to create your virtual machine. Note the monthly estimate 
+is \$68 and we have \$300 credit, in that case we will not exceed the free resources. However, you can also set a Budget
+for your project, and set alarms (See https://cloud.google.com/billing/docs/how-to/budgets).
 
 <center><figure>
   <img
@@ -60,7 +63,8 @@
 
 
 
-10. Wait for the virtual machine to be provisioned. Once it is ready, you can find its details on the Compute Engine dashboard, including its public IP.
+10.  Wait for the virtual machine to be provisioned. Once it is ready, you can find its details on the Compute Engine 
+dashboard, including its public IP.
 
 <center><figure>
   <img
@@ -68,7 +72,8 @@
 </figure></center>
 <p style="text-align: center;">Get public IP.</p>
 
-11.  To connect to the virtual machine via SSH, click on the SSH button next to the virtual machine instance name. This will open a terminal window directly in your browser.
+11.   To connect to the virtual machine via SSH, click on the SSH button next to the virtual machine instance name.
+This will open a terminal window directly in your browser.
     
 <center><figure>
   <img
@@ -76,14 +81,14 @@
 </figure></center>
 <p style="text-align: center;">SSH-in-browser</p>
 
-12. You are now connected to your GCP free tier virtual machine and can start using it for your desired tasks.
+12.  You are now connected to your GCP free tier virtual machine and can start using it for your desired tasks.
 
-13. To connect to the VM via SSH from your local machine
+13. To connect to the VM via SSH from your local machine:
     1.  Generate your SSH keys 
     ```shell
         ssh-keygen -t rsa -f ~/.ssh/gcp-vm
     ```
-    2. Go to metadata and add your public ssh key
+    2.  Go to metadata and add your public ssh key
     3. Connect to the VM using your private key
     ```shell
         ssh -i ~/.ssh/gcp-vm fjdur@X.X.X.X
