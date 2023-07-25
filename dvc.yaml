@@ -25,6 +25,9 @@ stages:
     - train.random_state
     outs:
     - models/iowa_model.pkl
+    metrics:
+    - metrics/emissions.csv:
+        cache: false
   evaluate:
     cmd: python -m src.evaluate
     deps:

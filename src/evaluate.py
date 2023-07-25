@@ -6,15 +6,17 @@ import mlflow
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
+from src import METRICS_DIR, PROCESSED_DATA_DIR
+
 # Path to the prepared data folder
-input_folder_path = Path("data/processed")
+input_folder_path = PROCESSED_DATA_DIR
 
 # Path to the models folder
 model_folder_path = Path("models")
 
 # Path to the metrics folder
 Path("metrics").mkdir(exist_ok=True)
-metrics_folder_path = Path("metrics")
+metrics_folder_path = METRICS_DIR
 
 # Read validation dataset
 X_valid = pd.read_csv(input_folder_path / "X_valid.csv")

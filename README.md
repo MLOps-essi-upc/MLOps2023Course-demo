@@ -42,8 +42,8 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
         <tr>
             <td rowspan="2"><b>Milestone 3 &mdash; Model building: QA</b></td>
             <td>Energy efficiency awareness</td>
-            <td>Code Carbon</td>
-            <td><a href="docs/codecarbon-demo.md">Code Carbon demo</a></td>
+            <td>CodeCarbon</td>
+            <td><a href="docs/codecarbon-demo.md">CodeCarbon demo</a></td>
         </tr>
         <tr>
             <td>Quality assurance for ML (static analysis + testing data and model)</td>
