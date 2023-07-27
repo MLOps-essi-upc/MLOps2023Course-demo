@@ -1,26 +1,36 @@
-# MLflow demo for the MLOps 2023-24 course
+# MLflow demo for the MLOps 2023-24 course <!-- omit in toc -->
 In this demo we will see the main features of [MLflow](https://mlflow.org/) to track the experiments of a simple machine
 learning project.
+
+## Contents <!-- omit in toc -->
+- [Install MLflow](#install-mlflow)
+- [Configure a tracking server](#configure-a-tracking-server)
+- [MLflow experiments](#mlflow-experiments)
+- [Add MLflow tracking to the code](#add-mlflow-tracking-to-the-code)
+- [MLflow UI](#mlflow-ui)
+- [DVC pipelines + MLflow](#dvc-pipelines--mlflow)
+
 
 ## Install MLflow
 First, we need to install MLflow. We can do this by running the following command:
 
-### Using poetry
+### Using poetry <!-- omit in toc -->
 ```bash
 poetry add mlflow
 ```
 
-### Using pdm
+### Using pdm <!-- omit in toc -->
 ```bash
 pdm add mlflow
 ```
 
-### Using pipenv
+### Using pipenv <!-- omit in toc -->
+
 ```bash
 pipenv install mlflow
 ```
 
-### Using pip
+### Using pip <!-- omit in toc -->
 ```bash
 pip install mlflow
 ```

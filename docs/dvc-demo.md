@@ -1,29 +1,43 @@
-# DVC demo for the MLOps 2023-24 course
+# DVC demo for the MLOps 2023-24 course <!-- omit in toc -->
 In this demo we will see the main features of [DVC](https://dvc.org/) to version control the data and the models of a 
 simple machine learning project.
 
 The scrips used in this project are based on the [SE4AI2021Course_DVC-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_DVC-demo)
-project. Hence, the examples uses data from the [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/c/home-data-for-ml-course).
+GitHub project. Hence, the examples uses data from the [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/c/home-data-for-ml-course).
+
+## Contents <!-- omit in toc -->
+- [Install DVC](#install-dvc)
+- [Initialize DVC](#initialize-dvc)
+- [Configure DVC](#configure-dvc)
+- [Working with DVC](#working-with-dvc)
+  - [Import raw data](#import-raw-data)
+  - [Create a DVC pipeline](#create-a-dvc-pipeline)
+    - [Data preparation stage](#data-preparation-stage)
+    - [Model training stage](#model-training-stage)
+    - [Model evaluation stage](#model-evaluation-stage)
+  - [Run the pipeline](#run-the-pipeline)
+
 
 ## Install DVC
 First, we need to install DVC. We can do this by running the following command:
 
-### Using poetry
+### Using poetry <!-- omit in toc -->
 ```bash
 poetry add dvc@<3.0
 ```
 
-### Using pdm
+### Using pdm <!-- omit in toc -->
+```bash
 ```bash
 pdm add dvc<3.0
 ```
 
-### Using pipenv
+### Using pipenv <!-- omit in toc -->
 ```bash
 pipenv install "dvc<3.0"
 ```
 
-### Using pip
+### Using pip <!-- omit in toc -->
 ```bash
 pip install "dvc<3.0"
 ```

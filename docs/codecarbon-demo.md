@@ -1,6 +1,18 @@
-# CodeCarbon Demo
+# CodeCarbon demo for the MLOps 2023-24 course <!-- omit in toc -->
 In this demo we will see the main features of [CodeCarbon](https://mlco2.github.io/codecarbon/index.html), a Python
 package to track the carbon emissions of machine learning projects.
+
+## Contents <!-- omit in toc -->
+- [Install CodeCarbon](#install-codecarbon)
+  - [Using poetry](#using-poetry)
+  - [Using pdm](#using-pdm)
+  - [Using pipenv](#using-pipenv)
+  - [Using pip](#using-pip)
+- [Tracking emissions](#tracking-emissions)
+  - [Using the `EmissionsTracker` class](#using-the-emissionstracker-class)
+  - [Using the `EmissionsTracker` context manager](#using-the-emissionstracker-context-manager)
+  - [Using the `track_emissions` decorator](#using-the-track_emissions-decorator)
+
 
 ## Install CodeCarbon
 First, we need to install CodeCarbon. We can do this by running the following command:
