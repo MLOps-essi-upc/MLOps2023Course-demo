@@ -1,53 +1,61 @@
-# API: creation and deployment
+# FastAPI demo for the MLOps 2023-24 course <!-- omit in toc -->
+In this demo we will see the main features of [FastAPI](https://fastapi.tiangolo.com/) to create an API for a simple
+machine learning project.
 
-- [API: creation and deployment](#api-creation-and-deployment)
-  - [API setup](#api-setup)
-  - [How to run the API?](#how-to-run-the-api)
-  - [API creation](#api-creation)
-  - [How to add a new model in this API?](#how-to-add-a-new-model-in-this-api)
+The scrips used in this project are based on the [SE4AI2021Course_FastAPI-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_FastAPI-demo) GitHub project.
+
+## Contents <!-- omit in toc -->
+- [Install FastAPI](#install-fastapi)
+- [Start the server](#start-the-server)
+- [Try the API](#try-the-api)
+  - [Access the API documentation](#access-the-api-documentation)
+  - [Try some requests](#try-some-requests)
 
 
-## API setup
+## Install FastAPI
+The first step is to install FastAPI and Uvicorn, which is a fast ASGI server (it can run asynchronous code in a single
+process) to launch our application. To do this, we can run the following command:
 
-Install all project requirements with `pip`:
-
+### Using poetry <!-- omit in toc -->
 ```bash
-pip install -r requirements.txt
+poetry add fastapi "uvicorn[standard]"
 ```
 
-## How to run the API?
+### Using pdm <!-- omit in toc -->
+```bash
+pdm add fastapi "uvicorn[standard]"
+```
 
-We'll be using Uvicorn, a fast ASGI server (it can run asynchronous code in a single process) to launch our application. Use the following command to start the server:
+### Using pipenv <!-- omit in toc -->
 
 ```bash
-uvicorn app.api:app \
+pipenv install fastapi "uvicorn[standard]"
+```
+
+### Using pip <!-- omit in toc -->
+```bash
+pip install fastapi "uvicorn[standard]"
+```
+
+## Start the server
+Use the following command to start the server:
+
+```bash
+uvicorn src.app.api:app \
     --host 0.0.0.0 \
     --port 5000 \
     --reload \
-    --reload-dir app \
+    --reload-dir src/app \
     --reload-dir models
-```
-Or
-```bash
-uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload  --reload-dir deploy-GAISSA --reload-dir app 
 ```
 In detail:
 
-- `uvicorn app.api:app` is the location of app (`app` directory > `api.py` script > `app` object);
+- `uvicorn src.app.api:app` is the location of app (`src` directory > `app` directory > `api.py` script > `app` object);
 - `--reload` makes the server reload every time we update;
 - `--reload-dir app` makes it only reload on updates to the `app/` directory;
 - `--reload-dir models` makes it also reload on updates to the `models/` directory;
 
-
-<center><figure>
-  <img
-  src="../static/deployment/api/01_api_running.png"
-</figure></center>
-<p style="text-align: center;">API running.</p>
-
-
-Now you can test the app:
-
+## Try the API
 We can now test that the application is working. These are some of the possibilities:
 
 - Visit [localhost:5000](http://localhost:5000/)
@@ -67,51 +75,43 @@ We can now test that the application is working. These are some of the possibili
   print (json.loads(response.text))
   ```
 
-- Use an external tool like [Postman](https://www.postman.com), which lets you execute and manage tests that can be saved and shared with others.
+- Use an external tool like [Postman](https://www.postman.com), which lets you execute and manage tests that can be 
+saved and shared with others.
 
-Visit [Swagger UI](http://localhost:5000/docs) in http://localhost:5000/docs for documentation endpoint and select one of the models. The documentation generated via [Redoc](https://github.com/Redocly/redoc) is accessible at the `/redoc` endpoint.
+### Access the API documentation
+You can access the [Swagger UI](https://swagger.io/tools/swagger-ui/) in http://localhost:5000/docs for documentation
+endpoint and select one of the models. The documentation generated via [Redoc](https://github.com/Redocly/redoc) is
+accessible at the `/redoc` endpoint.
 
 
 <center><figure>
   <img
-  src="../static/deployment/api/01_api_ui.png"
+  src="static/deployment/api/01_api_ui.png"
 </figure></center>
 <p style="text-align: center;">API User Interface in localhost:5000/docs endpoint.</p>
 
+### Try some requests
+To try an API request, click on the "Try it out" button and click execute.
 
-To make an inference, click on the "Try it out" button and click execute.
+For example:
+#### Virginica (2) <!-- omit in toc -->
 
-You should obtain a "200" code response after executing the POST method of the model:
+```json
+{
+  "sepal_length": 6.4,
+  "sepal_width": 2.8,
+  "petal_length": 5.6,
+  "petal_width": 2.1
+}
+```
 
-<figure>
-  <img
-  src="../static/deployment/api/01_api_response_ui.png"
-</figure>
-<p style="text-align: center;">API response on Swagger UI.</p>
+#### Setosa (0) <!-- omit in toc -->
 
-
-<center><figure>
-  <img
-  src="../static/deployment/api/01_api_response_terminal.png"
-</figure></center>
-<p style="text-align: center;">API response on terminal.</p>
-
-
-## API creation
-The API in this project is freely inspired by the [Made with ML](https://madewithml.com) tutorial: "[APIs for Machine Learning](https://madewithml.com/courses/mlops/api/)" and [FastAPI Lab](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_FastAPI-demo).
-
-Follow the guide https://madewithml.com/courses/mlops/api/
-
-## How to add a new model in this API?
-
-1. Add new model class.
-   File: [../app/models.py](../app/models.py)
-   - Add a new class according to your new model, parent class is `Model()`.
-   - Make sure `NewModel.predict()` method is implemented according to the model.
-   - Add ML_task
-2. Create a model schema.
-   File: [../app/schemas.py](../app/schemas.py)
-   - Create a schema with one example.
-3. Add endpoint.
-   File: [../app/api.py](../app/api.py)
-   - According to the new model information (Model Class and schema), add the endpoint to enable POST requests and make predictions using the model.
+```json
+{
+  "sepal_length": 5.7,
+  "sepal_width": 3.8,
+  "petal_length": 1.7,
+  "petal_width": 0.3
+}
+```

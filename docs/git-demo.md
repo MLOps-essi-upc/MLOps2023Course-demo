@@ -1,5 +1,15 @@
-# Git demo for the MLOps 2023-24 course
+# Git demo for the MLOps 2023-24 course <!-- omit in toc -->
 In this demo we will see the main features of [Git](https://git-scm.com/), a version control system.
+
+## Table of contents <!-- omit in toc -->
+- [Git installation](#git-installation)
+- [Git configuration](#git-configuration)
+- [Create a repository](#create-a-repository)
+- [Tracking files](#tracking-files)
+- [Configuring a remote repository](#configuring-a-remote-repository)
+- [Update your local repository](#update-your-local-repository)
+- [Branching](#branching)
+
 
 ## Git installation
 Git can be installed in different ways depending on the operating system. For example, in Ubuntu you can install it with
