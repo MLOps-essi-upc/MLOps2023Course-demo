@@ -11,32 +11,37 @@ The scrips used in this demo are based on the [SE4AI2021Course_FastAPI-demo](htt
 - [Try the API](#try-the-api)
   - [Access the API documentation](#access-the-api-documentation)
   - [Try some requests](#try-some-requests)
+- [Test the API](#test-the-api)
 
 
 ## Install FastAPI
 The first step is to install FastAPI and Uvicorn, which is a fast ASGI server (it can run asynchronous code in a single
-process) to launch our application. To do this, we can run the following command:
+process) to launch our application. Additionally, we will install [httpx](https://www.python-httpx.org/) which we will
+use to test our API. To do this, we can run the following command:
 
 ### Using poetry <!-- omit in toc -->
 ```bash
 poetry add fastapi "uvicorn[standard]"
+poetry add -G dev httpx
 ```
 
 ### Using pdm <!-- omit in toc -->
 ```bash
 pdm add fastapi "uvicorn[standard]"
+pdm add -dG test httpx
 ```
 
 ### Using pipenv <!-- omit in toc -->
 
 ```bash
-pipenv install fastapi "uvicorn[standard]"
+pipenv install fastapi "uvicorn[standard]" httpx
 ```
 
 ### Using pip <!-- omit in toc -->
 ```bash
-pip install fastapi "uvicorn[standard]"
+pip install fastapi "uvicorn[standard]" httpx
 ```
+
 
 ## Creating a simple API
 We can now create a simple API. To do this, we create a new file called [`api.py`](../src/app/api.py) in the `src/app`
@@ -134,3 +139,10 @@ For example:
   "petal_width": 0.3
 }
 ```
+
+## Test the API
+We can now test the API using [Pytest](https://docs.pytest.org/en/6.2.x/). To do this, we create a new file called [`test_api.py`](../src/tests/test_api.py) in the `tests/` directory.
+
+Here we will create a fixture called `client` that will be used to test the API. We will also create a second fixture called `payload` that will be used to test the `/models/{type}` endpoint.
+
+Finally, we will create a test for each endpoint. To do this, we will use the `client` fixture to make requests to the API and check the response.
