@@ -4,10 +4,9 @@ import pickle
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
-from pathlib import Path
-from typing import Dict, List
+from typing import List
 
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, HTTPException, Request
 
 from src import MODELS_DIR
 from src.app.schemas import IrisType, PredictPayload
@@ -91,13 +90,14 @@ def _get_models_list(request: Request, type: str = None):
         if model["type"] == type or type is None
     ]
 
-    response = {
-        "message": HTTPStatus.OK.phrase,
-        "status-code": HTTPStatus.OK,
-        "data": available_models,
-    }
-
-    return response
+    if not available_models:
+        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Type not found")
+    else:
+        return {
+            "message": HTTPStatus.OK.phrase,
+            "status-code": HTTPStatus.OK,
+            "data": available_models,
+        }
 
 
 @app.post("/models/{type}", tags=["Prediction"])
@@ -139,8 +139,7 @@ def _predict(request: Request, type: str, payload: PredictPayload):
             },
         }
     else:
-        response = {
-            "message": "Model not found",
-            "status-code": HTTPStatus.BAD_REQUEST,
-        }
+        raise HTTPException(
+            status_code=HTTPStatus.BAD_REQUEST, detail="Model not found"
+        )
     return response
