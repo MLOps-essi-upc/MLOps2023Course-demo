@@ -4,8 +4,7 @@ import pickle
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
-from pathlib import Path
-from typing import Dict, List
+from typing import List
 
 from fastapi import FastAPI, Request
 

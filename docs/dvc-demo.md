@@ -2,7 +2,7 @@
 In this demo we will see the main features of [DVC](https://dvc.org/) to version control the data and the models of a 
 simple machine learning project.
 
-The scrips used in this project are based on the [SE4AI2021Course_DVC-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_DVC-demo)
+The scrips used in this demo are based on the [SE4AI2021Course_DVC-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_DVC-demo)
 GitHub project. Hence, the examples uses data from the [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/c/home-data-for-ml-course).
 
 ## Contents <!-- omit in toc -->
