@@ -2,10 +2,11 @@
 In this demo we will see the main features of [FastAPI](https://fastapi.tiangolo.com/) to create an API for a simple
 machine learning project.
 
-The scrips used in this project are based on the [SE4AI2021Course_FastAPI-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_FastAPI-demo) GitHub project.
+The scrips used in this demo are based on the [SE4AI2021Course_FastAPI-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_FastAPI-demo) GitHub project.
 
 ## Contents <!-- omit in toc -->
 - [Install FastAPI](#install-fastapi)
+- [Creating a simple API](#creating-a-simple-api)
 - [Start the server](#start-the-server)
 - [Try the API](#try-the-api)
   - [Access the API documentation](#access-the-api-documentation)
@@ -36,6 +37,23 @@ pipenv install fastapi "uvicorn[standard]"
 ```bash
 pip install fastapi "uvicorn[standard]"
 ```
+
+## Creating a simple API
+We can now create a simple API. To do this, we create a new file called [`api.py`](../src/app/api.py) in the `src/app`
+directory. In this file, we will create a FastAPI application and three endpoints:
+- `/` will be the root endpoint, which will return a welcome message;
+- `/models` will return a list of the available models;
+- `/models/{type}` will return the prediction of the model specified in the path parameter.
+
+Since the `/models/{type}` endpoint receives a payload specifying the features of the flower, we will create a Pydantic
+class called `PredictPayload` to represent our payload. This class will be located in the
+[`schemas.py`](../src/app/schemas.py) file.
+
+
+In addition, we create two extra functions:
+- `construct_response` will be used as a wrapper to return the response in a standard format;
+- `_load_models` will be used to load the models from the `models/` directory on startup.
+
 
 ## Start the server
 Use the following command to start the server:
@@ -72,7 +90,7 @@ We can now test that the application is working. These are some of the possibili
   import requests
 
   response = requests.get("http://localhost:5000/")
-  print (json.loads(response.text))
+  print(json.loads(response.text))
   ```
 
 - Use an external tool like [Postman](https://www.postman.com), which lets you execute and manage tests that can be 
