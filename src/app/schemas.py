@@ -12,6 +12,8 @@ class PredictPayload(BaseModel):
     petal_width: float
 
     class Config:
+        """Used to define an example payload for the OpenAPI docs."""
+
         schema_extra = {
             "example": {
                 "sepal_length": 6.4,

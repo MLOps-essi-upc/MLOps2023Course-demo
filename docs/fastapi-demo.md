@@ -42,7 +42,8 @@ pip install fastapi "uvicorn[standard]"
 We can now create a simple API. To do this, we create a new file called [`api.py`](../src/app/api.py) in the `src/app`
 directory. In this file, we will create a FastAPI application and three endpoints:
 - `/` will be the root endpoint, which will return a welcome message;
-- `/models` will return a list of the available models;
+- `/models` will return a list of the available models and their metrics. Optionally, we can use the query parameter
+  `type` to filter the models.
 - `/models/{type}` will return the prediction of the model specified in the path parameter.
 
 Since the `/models/{type}` endpoint receives a payload specifying the features of the flower, we will create a Pydantic

@@ -4,7 +4,8 @@ import pickle
 from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
-from typing import List
+from pathlib import Path
+from typing import Dict, List
 
 from fastapi import FastAPI, Request
 
@@ -77,7 +78,7 @@ def _index(request: Request):
 
 @app.get("/models", tags=["Prediction"])
 @construct_response
-def _get_models_list(request: Request):
+def _get_models_list(request: Request, type: str = None):
     """Return the list of available models"""
 
     available_models = [
@@ -87,6 +88,7 @@ def _get_models_list(request: Request):
             "accuracy": model["metrics"],
         }
         for model in model_wrappers_list
+        if model["type"] == type or type is None
     ]
 
     response = {
