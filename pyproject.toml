@@ -26,6 +26,13 @@ pytest = "^7.4.0"
 pytest-cov = "^4.1.0"
 httpx = "^0.24.1"
 
+[tool.coverage.run]
+omit = ["src/prepare.py", "src/evaluate.py", "src/train.py", "src/train_api_demo_models.py"]
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--junitxml=out/tests-report.xml --cov=src --cov-report=html:out/coverage"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"

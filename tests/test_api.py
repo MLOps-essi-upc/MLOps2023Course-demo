@@ -3,7 +3,7 @@ from http import HTTPStatus
 import pytest
 from fastapi.testclient import TestClient
 
-from src.app.api import app, model_wrappers_list
+from src.app.api import app
 
 
 @pytest.fixture(scope="module", autouse=True)
