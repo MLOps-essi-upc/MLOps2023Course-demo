@@ -47,7 +47,7 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
         </tr>
         <tr>
             <td>Quality assurance for ML (static analysis + testing data and model)</td>
-            <td>Pynbilint (notebook + repository QA), Pylint of flake8, Pytest and Great Expectations</td>
+            <td>Pynbilint (notebook + repository QA), Pylint or flake8, Pytest and Great Expectations</td>
             <td>
                 <a href="docs/pytest-demo.md">Pytest demo</a>,
                 <a href="docs/great-expectations-demo.md">Great Expectations demo</a>

@@ -11,10 +11,8 @@ class PredictPayload(BaseModel):
     petal_length: float
     petal_width: float
 
-    class Config:
-        """Used to define an example payload for the OpenAPI docs."""
-
-        schema_extra = {
+    model_config: dict = {
+        "json_schema_extra": {
             "example": {
                 "sepal_length": 6.4,
                 "sepal_width": 2.8,
@@ -22,6 +20,7 @@ class PredictPayload(BaseModel):
                 "petal_width": 2.1,
             }
         }
+    }
 
 
 class IrisType(Enum):
