@@ -76,13 +76,13 @@ y_train_path = prepared_folder_path / "y_train.csv"
 X_valid_path = prepared_folder_path / "X_valid.csv"
 y_valid_path = prepared_folder_path / "y_valid.csv"
 
-X_train.to_csv(X_train_path)
+X_train.to_csv(X_train_path, index=False)
 print("Writing file {} to disk.".format(X_train_path))
 
 y_train.to_csv(y_train_path)
 print("Writing file {} to disk.".format(y_train_path))
 
-X_valid.to_csv(X_valid_path)
+X_valid.to_csv(X_valid_path, index=False)
 print("Writing file {} to disk.".format(X_valid_path))
 
 y_valid.to_csv(y_valid_path)

@@ -1,7 +1,7 @@
 schema: '2.0'
 stages:
   prepare:
-    cmd: python -m src.prepare
+    cmd: python -m src.features.prepare
     deps:
     - path: data/raw/test.csv
       md5: dcec4b79bf9c7317bd9e17789bf888f0
@@ -9,10 +9,10 @@ stages:
     - path: data/raw/train.csv
       md5: 80ccab65fb115cbad143dbbd2bcd5577
       size: 460676
-    - path: src/prepare.py
+    - path: src/features/prepare.py
       hash: md5
-      md5: 3f4d96c25dd2435b0737e70ceb241c09
-      size: 2588
+      md5: 3f6d6e710b646251704b7e5a1b8b664e
+      size: 2614
     params:
       params.yaml:
         prepare.random_state: 2023
@@ -20,30 +20,36 @@ stages:
         prepare.train_size: 0.8
     outs:
     - path: data/processed/X_train.csv
-      md5: 713fe946a53a6f11ea15713d61d3590d
-      size: 217729
+      hash: md5
+      md5: 8d638fac80a1e3c3da133026423213e9
+      size: 212998
     - path: data/processed/X_valid.csv
-      md5: 33c3586dd60b2f7b336015f3c7a283e3
-      size: 54714
+      hash: md5
+      md5: b85d6dbfb6162db6cc70283c522301a0
+      size: 53655
     - path: data/processed/y_train.csv
+      hash: md5
       md5: 37e44c3a394132f52cdc69cc50842abd
       size: 13058
     - path: data/processed/y_valid.csv
+      hash: md5
       md5: a06f9b382ed2a355bdf82b09d524f76c
       size: 3267
   train:
-    cmd: python -m src.train
+    cmd: python -m src.models.train
     deps:
     - path: data/processed/X_train.csv
-      md5: 713fe946a53a6f11ea15713d61d3590d
-      size: 217729
+      hash: md5
+      md5: 8d638fac80a1e3c3da133026423213e9
+      size: 212998
     - path: data/processed/y_train.csv
+      hash: md5
       md5: 37e44c3a394132f52cdc69cc50842abd
       size: 13058
-    - path: src/train.py
+    - path: src/models/train.py
       hash: md5
-      md5: 0dc2abb0d71447aafa6dc5164e7bd0b4
-      size: 2254
+      md5: 7d03f9240d7509af5dc7f3d17734de31
+      size: 2230
     params:
       params.yaml:
         train.algorithm: RandomForestRegressor
@@ -51,30 +57,33 @@ stages:
     outs:
     - path: metrics/emissions.csv
       hash: md5
-      md5: d93731ef7044c5a64af15d75911fb295
-      size: 824
+      md5: 3f5150fd54cc62b4f5eb6b1dea1769c3
+      size: 796
     - path: models/iowa_model.pkl
       hash: md5
-      md5: dc5dc079fa9dabe5d36ebfb9ff7382ef
-      size: 11840712
+      md5: b46ad276c85d06d21d59c0f2c68f1871
+      size: 11840699
   evaluate:
-    cmd: python -m src.evaluate
+    cmd: python -m src.models.evaluate
     deps:
     - path: data/processed/X_valid.csv
-      md5: 33c3586dd60b2f7b336015f3c7a283e3
-      size: 54714
+      hash: md5
+      md5: b85d6dbfb6162db6cc70283c522301a0
+      size: 53655
     - path: data/processed/y_valid.csv
+      hash: md5
       md5: a06f9b382ed2a355bdf82b09d524f76c
       size: 3267
     - path: models/iowa_model.pkl
       hash: md5
-      md5: dc5dc079fa9dabe5d36ebfb9ff7382ef
-      size: 11840712
-    - path: src/evaluate.py
+      md5: b46ad276c85d06d21d59c0f2c68f1871
+      size: 11840699
+    - path: src/models/evaluate.py
       hash: md5
       md5: 2f086266e61dde5c1b759686bede3f05
       size: 1790
     outs:
     - path: metrics/scores.json
-      md5: b074bacca8be080f3f852a1c188bd57a
+      hash: md5
+      md5: c7669d66963537863f6fe636724bfa76
       size: 78
