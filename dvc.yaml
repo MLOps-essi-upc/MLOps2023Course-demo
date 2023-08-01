@@ -1,10 +1,10 @@
 stages:
   prepare:
-    cmd: python -m src.prepare
+    cmd: python -m src.features.prepare
     deps:
     - data/raw/test.csv
     - data/raw/train.csv
-    - src/prepare.py
+    - src/features/prepare.py
     params:
     - prepare.random_state
     - prepare.test_size
@@ -15,11 +15,11 @@ stages:
     - data/processed/y_train.csv
     - data/processed/y_valid.csv
   train:
-    cmd: python -m src.train
+    cmd: python -m src.models.train
     deps:
     - data/processed/X_train.csv
     - data/processed/y_train.csv
-    - src/train.py
+    - src/models/train.py
     params:
     - train.algorithm
     - train.random_state
@@ -29,12 +29,12 @@ stages:
     - metrics/emissions.csv:
         cache: false
   evaluate:
-    cmd: python -m src.evaluate
+    cmd: python -m src.models.evaluate
     deps:
     - data/processed/X_valid.csv
     - data/processed/y_valid.csv
     - models/iowa_model.pkl
-    - src/evaluate.py
+    - src/models/evaluate.py
     metrics:
     - metrics/scores.json:
         cache: false
