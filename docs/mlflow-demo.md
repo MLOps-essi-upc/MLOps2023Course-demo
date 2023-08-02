@@ -88,7 +88,7 @@ mlflow.set_experiment("iowa-house-prices")
 MLflow comes with automatic logging APIs for several machine learning frameworks. In these cases, we can use the
 [`mlflow.<framework>.autolog()`](https://mlflow.org/docs/latest/tracking.html#automatic-logging) function to automatically
 log the parameters, metrics, and model artifacts from our machine learning code.
-For an example see the [`train.py`](../src/train.py) file.
+For an example see the [`train.py`](../src/models/train.py) file.
 
 > **Note:** Autologging is only supported for certain versions of the frameworks. If you are using the latest version of
 some of these frameworks you might get some errors.
@@ -98,7 +98,7 @@ If you are using a framework that is not supported by MLflow or want to log cust
 can use the [`mlflow.log_param()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_param),
 [`mlflow.log_metric()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_metric) and
 [`mlflow.log_artifact()`](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.log_artifact) functions. See the
-[`evaluate.py`](../src/evaluate.py) file for an example.
+[`evaluate.py`](../src/models/evaluate.py) file for an example.
 See the [MLflow documentation](https://mlflow.org/docs/latest/tracking.html#logging-data-to-runs) for more details.
 
 ## MLflow UI
