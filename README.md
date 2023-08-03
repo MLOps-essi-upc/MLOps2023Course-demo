@@ -1,5 +1,7 @@
 # MLOps2023Course-demo
-This is a demo project for the Machine Learning Systems in Production (MLOps) 2023-24 course (Universitat Politècnica de Catalunya-BarcelonaTech (UPC), Spain).
+This is a demo project for the Advanced Topics in Data Engineering II (TAED-2) and the Machine Learning Systems in Production (MLOps) 2023-24 courses (Universitat Politècnica de Catalunya-BarcelonaTech (UPC), Spain).
+
+This project follows the structure proposed by Lanubile et al. [1].
 
 ## Project milestones
 <table>
@@ -66,3 +68,6 @@ This is a demo project for the Machine Learning Systems in Production (MLOps) 20
         </tr>
     </tbody>
 </table>
+
+## References
+[1] F. Lanubile, S. Martínez-Fernández, and L. Quaranta, "Teaching MLOps in Higher Education through Project-Based Learning." arXiv, Feb. 02, 2023. doi: [10.48550/arXiv.2302.01048](https://doi.org/10.48550/arXiv.2302.01048).
