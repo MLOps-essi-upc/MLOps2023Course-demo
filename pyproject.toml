@@ -19,7 +19,7 @@ uvicorn = {extras = ["standard"], version = "<=0.24"}
 great-expectations = "<=0.18"
 
 [tool.poetry.group.dev.dependencies]
-black = "<=23.8"
+black = "<=23.9.1"
 isort = "<=5.13"
 bandit = "<=1.8"
 pylint = "<=2.18"
