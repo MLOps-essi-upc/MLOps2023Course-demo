@@ -24,6 +24,10 @@ updates:
           - "python-dotenv"
           - "dvc"
           - "mlflow"
+          - "fastapi"
+          - "uvicorn"
+          - "codecarbon"
+          - "great-expectations"
     labels:
       - "poetry"
       - "dependencies"
