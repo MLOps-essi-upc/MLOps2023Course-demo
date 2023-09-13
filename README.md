@@ -70,4 +70,5 @@ This project follows the structure proposed by Lanubile et al. [1].
 </table>
 
 ## References
-[1] F. Lanubile, S. Martínez-Fernández, and L. Quaranta, "Teaching MLOps in Higher Education through Project-Based Learning." arXiv, Feb. 02, 2023. doi: [10.48550/arXiv.2302.01048](https://doi.org/10.48550/arXiv.2302.01048).
+[1] F. Lanubile, S. Martínez-Fernández, and L. Quaranta, "Teaching MLOps in Higher Education through Project-Based Learning." SEET@ICSE 2023: 95-100. doi: [10.1109/ICSE-SEET58685.2023.00015](https://doi.org/10.1109/ICSE-SEET58685.2023.00015).
+[2] F. Lanubile, S. Martínez-Fernández, and L. Quaranta, "Training future ML engineers: a project-based course on MLOps." IEEE Software 2024. doi: [10.1109/MS.2023.3310768](https://doi.org/10.1109/MS.2023.3310768).
