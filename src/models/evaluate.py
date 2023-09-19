@@ -27,8 +27,6 @@ y_valid = pd.read_csv(input_folder_path / "y_valid.csv")
 # ================ #
 mlflow.set_experiment("iowa-house-prices")
 
-# Since this is executed as a step in a DVC pipeline, we can get the run ID of the previous step and use it to log the
-# evaluation metrics to the same run
 with mlflow.start_run():
     # Load the model
     with open(model_folder_path / "iowa_model.pkl", "rb") as pickled_model:
