@@ -10,12 +10,14 @@ GitHub project. Hence, the examples uses data from the [Housing Prices Competiti
 - [Initialize DVC](#initialize-dvc)
 - [Configure DVC](#configure-dvc)
 - [Working with DVC](#working-with-dvc)
+  - [Adding data to DVC](#adding-data-to-dvc)
   - [Import raw data](#import-raw-data)
   - [Create a DVC pipeline](#create-a-dvc-pipeline)
     - [Data preparation stage](#data-preparation-stage)
     - [Model training stage](#model-training-stage)
     - [Model evaluation stage](#model-evaluation-stage)
   - [Run the pipeline](#run-the-pipeline)
+- [FAQ](#faq)
 
 
 ## Install DVC
@@ -63,9 +65,28 @@ Storage as its remote by following the instructions in your Dagshub repository.
     <img src="static/dagshub-dvc-config.png" width="700" alt="Dagshub Storage configuration">
 </p>
 
+If you have correctly configured DVC to use Dagshub Storage as its remote, your `.dvc/config` file should look like [this](../.dvc/config).
+
 ## Working with DVC
+### Adding data to DVC
+As a first step, we will add the data to DVC. We will use the data from the [Housing Prices Competition for Kaggle Learn Users](https://www.kaggle.com/c/home-data-for-ml-course).
+
+After downloading the `train.csv` and `test.csv` files and put the inside the `data/raw` directory, we can add them to DVC using the [`dvc add`](https://dvc.org/doc/command-reference/add) command:
+
+```bash
+dvc add data
+```
+
+This will create a `data.dvc` file, and a `.gitignore` file (if it has not been already created). The `data.dvc` file is a text file that tells DVC where the data is stored, and how to download it. The `.gitignore` file is a text file that tells Git to ignore the data files, and to track only the `data.dvc` file.
+
+With this, every new file or directory added to the `data` directory will be automatically tracked by DVC. We can also add the subdirectories of `data` individualy to DVC by running the same command for each subdirectory. For example, we can add the `data/raw` subdirectory by running:
+
+```bash
+dvc add data/raw
+```
+
 ### Import raw data
-As a first step, we will import the raw data using the [`dvc import`](https://dvc.org/doc/command-reference/import) command:
+In case you are working with data comming from another project using DVC or Git, you can import the data using the [`dvc import`](https://dvc.org/doc/command-reference/import) command:
 
 ```bash
 dvc import https://github.com/collab-uniba/Software-Solutions-for-Reproducible-ML-Experiments input/home-data-for-ml-course/train.csv -o data/raw
@@ -150,3 +171,7 @@ dvc repro
 
 You'll notice a [`dvc.lock`](../dvc.lock) (a "state file") was created to capture the reproduction's results. It is a
 good practice to commit this file to Git after its creation or modification, to record the current state and results.
+
+## FAQ
+- If you are already tracking a file or directory with Git, you cannot add it to DVC. You need to remove it from Git first by running `git rm --cached <file or directory>`, and then add it to DVC.
+- You cannot track a directory with DVC if it contains any file or directory already tracked by DVC. You need to remove the tracked files or directories first by running `dvc remove <file or directory>`, and then add the directory to DVC.
