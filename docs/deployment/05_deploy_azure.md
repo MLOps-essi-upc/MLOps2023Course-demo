@@ -16,7 +16,18 @@
 </figure></center>
 <p style="text-align: center;">Azure portal.</p>
 
-3. **Navigate to Virtual Machines and Create a new VM.** 
+3. **Pricing ----------------> IMPORTANT!**
+   - Free tier resources offered by Azure: https://azure.microsoft.com/free/
+   - Before deploying your machine learning models on Azure, it's crucial to have a clear understanding of Azure pricing. Azure follows a pay-as-you-go pricing model, where you are billed based on your actual usage. Awareness of potential costs is essential when running ML workloads on Azure.
+   - Setting up a budget:
+      - https://learn.microsoft.com/en-us/azure/cost-management-billing/costs/tutorial-acm-create-budgets
+   - Caution for users:
+     - While Budgets are a powerful tool for managing costs, it's essential to emphasize the importance of cost-consciousness
+       - Cost: Verify the costs of using your resources: https://azure.microsoft.com/pricing/
+       - Cleanup: Clean up  resources that are no longer needed. 
+       - Alerts: Set up alerts to be sent to your email in case you exceed any budget.
+
+5. **Navigate to Virtual Machines and Create a new VM.** 
 
 <center><figure>
   <img
@@ -24,7 +35,7 @@
 </figure></center>
 <p style="text-align: center;">Azure Vrtual Machines.</p>
 
-4. **Configurate your VM.** 
+6. **Configurate your VM.** 
    - Configure the instance details. Allow SSH traffic and HTTPS traffic from the internet.
    - Create and review
    - When the Generate new key pair window opens, select Download private key and create resource. Your key file will be
@@ -55,7 +66,7 @@
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
-5.  **Wait for the virtual machine to be provisioned.**
+7.  **Wait for the virtual machine to be provisioned.**
     - Once it is ready, you can find its details on your VM dashboard, including its public IP.
 
 <center><figure>
@@ -64,7 +75,7 @@
 </figure></center>
 <p style="text-align: center;">Azure VM details.</p>
 
-6.   **Access your Instance via SSH.** 
+8.   **Access your Instance via SSH.** 
      - Once the instances are launched, you can connect to them using SSH. Open your terminal or SSH client and use the
       downloaded private key file to establish an SSH connection to your instance. The command typically looks like this:
      ```shell
@@ -75,9 +86,9 @@
       username, and public_ip with the public DNS name or IP address of your instance.
      - See also [Step 3](03_deploy_general.md)
 
-7.  **Clone repository. See [03_deploy_general.md: Step 4](03_deploy_general.md)**
-8.  **Set Up the Environment. See [03_deploy_general.md: Step 5](03_deploy_general.md)**
-9.  **Run the API. See [03_deploy_general.md: Step 6](03_deploy_general.md)**
-10. **Access the API. See [03_deploy_general.md: Step 7](03_deploy_general.md)**  
+9.  **Clone repository. See [03_deploy_general.md: Step 4](03_deploy_general.md)**
+10.  **Set Up the Environment. See [03_deploy_general.md: Step 5](03_deploy_general.md)**
+11.  **Run the API. See [03_deploy_general.md: Step 6](03_deploy_general.md)**
+12. **Access the API. See [03_deploy_general.md: Step 7](03_deploy_general.md)**  
 
 

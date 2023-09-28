@@ -18,8 +18,16 @@
    - Go to the AWS Management Console (https://console.aws.amazon.com/) and sign in with your AWS account credentials.
    Sign up if you do not have an account.
 
-3. **Setup budget.**
-   - https://aws.amazon.com/getting-started/hands-on/control-your-costs-free-tier-budgets/
+3. **Pricing ----------------> IMPORTANT!**
+   - Free tier resources offered by AWS: https://aws.amazon.com/free
+   - Before deploying your machine learning models on AWS, it's crucial to have a clear understanding of AWS pricing. AWS offers a pay-as-you-go pricing model, which means you only pay for the resources and services you use. However, it's essential to be aware of the potential costs associated with running ML workloads, as they can add up quickly if not managed properly.
+   - Setting up a budget:
+      - https://aws.amazon.com/getting-started/hands-on/control-your-costs-free-tier-budgets/
+   - Caution for users:
+     - While AWS Budgets are a powerful tool for managing costs, it's essential to emphasize the importance of cost
+       - Cost: Verify the costs of using your resources: aws.amazon.com/pricing/
+       - Cleanup: Clean up  resources that are no longer needed. 
+       - Alerts: Set up alerts to be sent to your email in case you exceed any budget.
 
 4. **Navigate to EC2 Service.** 
    - Once logged in, navigate to the EC2 service by searching for "EC2" in the search bar at the top of the console.
