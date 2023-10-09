@@ -8,49 +8,76 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 
 from src import METRICS_DIR, PROCESSED_DATA_DIR
 
-# Path to the prepared data folder
-input_folder_path = PROCESSED_DATA_DIR
-
 # Path to the models folder
-model_folder_path = Path("models")
+MODELS_FOLDER_PATH = Path("models")
 
-# Path to the metrics folder
-Path("metrics").mkdir(exist_ok=True)
-metrics_folder_path = METRICS_DIR
 
-# Read validation dataset
-X_valid = pd.read_csv(input_folder_path / "X_valid.csv")
-y_valid = pd.read_csv(input_folder_path / "y_valid.csv")
+def load_validation_data(input_folder_path: Path):
+    """Load the validation data from the prepared data folder.
 
-# ================ #
-# MODEL EVALUATION #
-# ================ #
-mlflow.set_experiment("iowa-house-prices")
+    Args:
+        input_folder_path (Path): Path to the prepared data folder.
 
-with mlflow.start_run():
-    # Load the model
-    with open(model_folder_path / "iowa_model.pkl", "rb") as pickled_model:
+    Returns:
+        Tuple[pd.DataFrame, pd.DataFrame]: Tuple containing the validation features and target.
+    """
+    X_valid = pd.read_csv(input_folder_path / "X_valid.csv")
+    y_valid = pd.read_csv(input_folder_path / "y_valid.csv")
+
+    return X_valid, y_valid
+
+
+def evaluate_model(model_file_name, x, y):
+    """Evaluate the model using the validation data.
+
+    Args:
+        model_file_name (str): Filename of the model to be evaluated.
+        x (pd.DataFrame): Validation features.
+        y (pd.DataFrame): Validation target.
+
+    Returns:
+        Tuple[float, float]: Tuple containing the MAE and MSE values.
+    """
+
+    with open(MODELS_FOLDER_PATH / model_file_name, "rb") as pickled_model:
         iowa_model = pickle.load(pickled_model)
 
-    # Compute predictions using the model
-    val_predictions = iowa_model.predict(X_valid)
+        # Compute predictions using the model
+    val_predictions = iowa_model.predict(x)
 
     # Compute the MAE and MSE values for the model
-    val_mae = mean_absolute_error(y_valid, val_predictions)
-    val_mean_squared_error = mean_squared_error(y_valid, val_predictions)
+    mae = mean_absolute_error(y, val_predictions)
+    mse = mean_squared_error(y, val_predictions)
+    return mae, mse
 
-    # Save the evaluation metrics to a dictionary to be reused later
-    metrics_dict = {"mae": val_mae, "mean_squared_error": val_mean_squared_error}
 
-    # Log the evaluation metrics to MLflow
-    mlflow.log_metrics(metrics_dict)
+if __name__ == "__main__":
+    # Path to the metrics folder
+    Path("metrics").mkdir(exist_ok=True)
+    metrics_folder_path = METRICS_DIR
 
-    # Save the evaluation metrics to a JSON file
-    with open(metrics_folder_path / "scores.json", "w") as scores_file:
-        json.dump(
-            metrics_dict,
-            scores_file,
-            indent=4,
+    X_valid, y_valid = load_validation_data(PROCESSED_DATA_DIR)
+
+    mlflow.set_experiment("iowa-house-prices")
+
+    with mlflow.start_run():
+        # Load the model
+        val_mae, val_mean_squared_error = evaluate_model(
+            "iowa_model.pkl", X_valid, y_valid
         )
 
-    print("Evaluation completed.")
+        # Save the evaluation metrics to a dictionary to be reused later
+        metrics_dict = {"mae": val_mae, "mean_squared_error": val_mean_squared_error}
+
+        # Log the evaluation metrics to MLflow
+        mlflow.log_metrics(metrics_dict)
+
+        # Save the evaluation metrics to a JSON file
+        with open(metrics_folder_path / "scores.json", "w") as scores_file:
+            json.dump(
+                metrics_dict,
+                scores_file,
+                indent=4,
+            )
+
+        print("Evaluation completed.")
