@@ -91,11 +91,11 @@
 
      - Replace /path/to/private_key.pem with the actual path to your private key file, username with the appropriate
       username (depending on the chosen AMI), and public_ip with the public DNS name or IP address of your instance.
-     - See also [Step 3](03_deploy_general.md)
+     - See also [Step 3](01_deploy_general.md)
 
-14. **Clone repository. See [03_deploy_general.md: Step 4](03_deploy_general.md)**
-15. **Set Up the Environment. See [03_deploy_general.md: Step 5](03_deploy_general.md)**
-16. **Run the API. See [03_deploy_general.md: Step 6](03_deploy_general.md)**
-17. **Access the API. See [03_deploy_general.md: Step 7](03_deploy_general.md)**  
+14. **Clone repository. See [01_deploy_general.md: Step 4](01_deploy_general.md)**
+15. **Set Up the Environment. See [01_deploy_general.md: Step 5](01_deploy_general.md)**
+16. **Run the API. See [01_deploy_general.md: Step 6](01_deploy_general.md)**
+17. **Access the API. See [01_deploy_general.md: Step 7](01_deploy_general.md)**  
 
 
