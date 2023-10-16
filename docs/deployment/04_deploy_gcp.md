@@ -110,7 +110,7 @@ This will open a terminal window directly in your browser.
 </figure></center>
 <p style="text-align: center;">Adding SSH keys.</p>
 
-15.  Clone repository. See [Step 4](03_deploy_general.md)
-16.  Set Up the Environment. See [Step 5](03_deploy_general.md)
-17.  Run the API. See [Step 6](03_deploy_general.md)
-18.  Access the API. See [Step 7](03_deploy_general.md)
+15.  Clone repository. See [Step 4](01_deploy_general.md)
+16.  Set Up the Environment. See [Step 5](01_deploy_general.md)
+17.  Run the API. See [Step 6](01_deploy_general.md)
+18.  Access the API. See [Step 7](01_deploy_general.md)
