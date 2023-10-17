@@ -1,4 +1,3 @@
--------------------
 # Guide to Deploy ML Models through an API on a Cloud Provider
 
 This guide provides step-by-step instructions to deploy ML models through an API using a virtual machine in a cloud provider. It assumes a general cloud provider setup and covers the following steps:
@@ -23,12 +22,15 @@ This guide provides step-by-step instructions to deploy ML models through an API
 
 1.  Generate your SSH keys 
 ```shell
-ssh-keygen -t rsa -f ~/.ssh/my-key
+ssh-keygen -t ed25519 -f ~/.ssh/my-key -C "my_user@my_hostname"
 ```
 2. Add your public ssh key (my-key.pub) into your cloud provider's allowed keys.
+```shell
+ssh-copy-id -i ~/.ssh/my-key.pub cloud_user@X.X.X.X
+```
 3. Connect to the VM using your private key and the public IP (X.X.X.X) of the VM
 ```shell
-ssh -i ~/.ssh/my-key myuser@X.X.X.X
+ssh -i ~/.ssh/my-key cloud_user@X.X.X.X
 ```
 ## Step 4: Clone the Repository
 
@@ -41,10 +43,22 @@ git clone https://github.com/fjdurlop/deploy-GAISSA.git
 ```
 ## Step 5: Set Up the Environment
 
-1. Install the necessary dependencies and packages required for running the API. 
+1. Create a virtual environment for the API using [venv](https://docs.python.org/3/library/venv.html), [virtualenv](https://virtualenv.pypa.io/en/latest/), [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html), [poetry](https://python-poetry.org/), or any other tool of your choice. For example, using venv:
 
 ```shell
-. ./scripts/setenv.sh
+python3 -m venv venv
+```
+
+2. Activate the virtual environment.
+
+```shell
+source venv/bin/activate
+```
+
+3. Install the necessary dependencies and packages required for running the API. 
+
+```shell
+./scripts/setenv.sh
 ```
 
 ```shell
@@ -60,23 +74,49 @@ python3 -m pip install -r requirements.txt
 2. Start the API server:
 
     ```bash
-    uvicorn app.api:app \
-        --host 0.0.0.0 \
-        --port 5000 \
-        --reload \
-        --reload-dir app \
-        --reload-dir models
+    uvicorn app.api:app  --host 0.0.0.0 --port 80
     ```
-    Or
-    ```bash
-    uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload --reload-dir app 
-    ```
-3. Create SSH tunnel to access endpoints, forwards traffic from my local port XXXX to the remote server's port XXXX
-    ```bash
-    ssh -L 8000:localhost:8000  myuser@X.X.X.X
-    ```
+
 ## Step 7: Access the API
-1. Open a web browser (http://localhost:8000/) or use a tool like cURL or Postman to make HTTP requests to the API endpoints.
+1. Open a web browser (http://X.X.X.X) or use a tool like cURL or Postman to make HTTP requests to the API endpoints.
 
 2. Send requests to the API with the required input data and parameters to obtain predictions.
 
+## Step 8: Conigure a proxy server (Optional)
+1. Stop the API process. You can use tools like [htop](https://htop.dev/) to find the process id (PID) and kill it.
+
+2. Install [nginx](https://www.nginx.com/) on the virtual machine. For example, on Ubuntu:
+```shell
+sudo apt update
+sudo apt install nginx
+```
+
+3. Configure nginx
+```shell
+sudo vim /etc/nginx/sites-available/fastapi-app
+```
+
+4. Copy the following configuration into the file and replace the X.X.X.X with the IP address of your server.
+```shell
+server {
+    listen 80;
+
+    # add here the ip address of your server
+    # or a domain pointing to that ip (like example.com or www.example.com)
+    server_name X.X.X.X;
+
+    location / {
+        proxy_pass http://X.X.X.X:5000;
+    }
+}
+```
+
+5. Restart nginx
+```shell
+sudo systemctl restart nginx
+```
+
+6. Relaunch the API
+```shell
+uvicorn app.api:app  --host 0.0.0.0 --port 5000
+```
