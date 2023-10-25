@@ -58,7 +58,7 @@ class called `PredictPayload` to represent our payload. This class will be locat
 
 In addition, we create two extra functions:
 - `construct_response` will be used as a wrapper to return the response in a standard format;
-- `_load_models` will be used to load the models from the `models/` directory on startup.
+- `_load_models` will be used to load the models from the `models/` directory on startup. *Note that this function is automatically called when initializing the API. Thus, you do not need to call it inside your endpoints. Just create a global variable where you store your model/s*
 
 
 ## Start the server
@@ -143,6 +143,6 @@ For example:
 ## Test the API
 We can now test the API using [Pytest](https://docs.pytest.org/en/6.2.x/). To do this, we create a new file called [`test_api.py`](../src/tests/test_api.py) in the `tests/` directory.
 
-Here we will create a fixture called `client` that will be used to test the API. We will also create a second fixture called `payload` that will be used to test the `/models/{type}` endpoint.
+Here we will create a fixture called `client` that will be used to test the API. We will also create a second fixture called `payload` that will be used to test the `/models/{type}` endpoint. Since our endpoints expect the payload in JSON format we must build the `payload` return value according to the same format. If you have correctly implemented your API, the `/docs` endpoint will show you an example of the payload expected by each of your endpoints.
 
 Finally, we will create a test for each endpoint. To do this, we will use the `client` fixture to make requests to the API and check the response.
