@@ -8,8 +8,8 @@ packages = [{include = "mlops2023course_demo"}]
 
 [tool.poetry.dependencies]
 python = ">3.9,<3.12"
-dvc = "<=3.20"
-mlflow = "<=2.7"
+dvc = "<=3.30"
+mlflow = "<=2.8"
 pandas = "<=2.2"
 scikit-learn = "<=1.4"
 python-dotenv = "<=1.1"
@@ -19,10 +19,10 @@ uvicorn = {extras = ["standard"], version = "<=0.24"}
 great-expectations = "<=0.18"
 
 [tool.poetry.group.dev.dependencies]
-black = "<=23.8"
+black = "<=23.10"
 isort = "<=5.13"
 bandit = "<=1.8"
-pylint = "<=2.18"
+pylint = "<=3.0"
 pytest = "<=7.5"
 pytest-cov = "<=4.2"
 httpx = "<=0.25"
