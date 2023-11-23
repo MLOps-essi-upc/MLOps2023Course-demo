@@ -39,7 +39,6 @@ def test_root(client):
 
 
 def test_get_all_models(client):
-    "Use the TestClient with a `with` statement to trigger the startup and shutdown events."
     response = client.get("/models")
     json = response.json()
     assert response.status_code == 200
