@@ -8,13 +8,13 @@ packages = [{include = "mlops2023course_demo"}]
 
 [tool.poetry.dependencies]
 python = ">3.9,<3.12"
-dvc = "<=3.23.0"
-mlflow = "<=2.7.1"
+dvc = "<=3.28.0"
+mlflow = "<=2.8.0"
 pandas = "<=2.2"
 scikit-learn = "<=1.4"
 python-dotenv = "<=1.1"
 codecarbon = "<=2.4"
-fastapi = "<=0.104"
+fastapi = "<=0.104.1"
 uvicorn = {extras = ["standard"], version = "<=0.24"}
 great-expectations = "<=0.18"
 

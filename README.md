@@ -56,7 +56,7 @@ This project follows the structure proposed by Lanubile et al. [1].
             </td>
         </tr>
         <tr>
-            <td rowspan="3"><b>Milestone 4 &mdash; Model deployment: API</b></td>
+            <td rowspan="2"><b>Milestone 4 &mdash; Model deployment: API</b></td>
             <td>ML system design</td>
             <td>Cloud platform selected by the students (VMs, Heroku, DigitalOcean, etc.)</td>
             <td><a href="docs/deployment/">Deployment guides</a></td>
@@ -66,6 +66,12 @@ This project follows the structure proposed by Lanubile et al. [1].
             <td>FastAPI and Pytest (to test the API endpoints)</td>
             <td><a href="docs/fastapi-demo.md">FastAPI demo</a></td>
         </tr>
+        <tr>
+            <td rowspan="2"><b>Milestone 5 &mdash; Model Packaging</b></td>
+            <td>Containers</td>
+            <td>Docker, Docker Compose, Kubernetes</td>
+            <td></td>
+        </tr> 
     </tbody>
 </table>
 
