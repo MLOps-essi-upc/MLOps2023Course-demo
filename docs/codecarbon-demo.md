@@ -49,6 +49,7 @@ tracker.start()
 # Your training code here
 tracker.stop()
 ```
+> Note: The tracker.stop() returns the total emissions in CO2e (kg) as a float.
 
 ### Using the `EmissionsTracker` context manager
 ```python
@@ -67,7 +68,7 @@ def training_function():
     # Your training code here
 ```
 
-For more information on each of these methods and their parameters, see the [CodeCarbon documentation](https://mlco2.github.io/codecarbon/usage.html).
+For more information on each of these methods and their parameters, see the [CodeCarbon documentation](https://mlco2.github.io/codecarbon/parameters.html).
 
 When you run your code with one of these methods, CodeCarbon will track the emissions of your machine learning project and save them in a CSV file. In addition, it will display some information in the terminal similar to the following:
 ```
