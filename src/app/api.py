@@ -7,8 +7,9 @@ from http import HTTPStatus
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Request
+from codecarbon import track_emissions
 
-from src import MODELS_DIR
+from src import METRICS_DIR, MODELS_DIR
 from src.app.schemas import IrisType, PredictPayload
 
 model_wrappers_list: List[dict] = []
@@ -102,6 +103,12 @@ def _get_models_list(request: Request, type: str = None):
 
 @app.post("/models/{type}", tags=["Prediction"])
 @construct_response
+@track_emissions(
+    project_name="iris-prediction",
+    measure_power_secs=1,
+    save_to_file=True,
+    output_dir=METRICS_DIR,
+)
 def _predict(request: Request, type: str, payload: PredictPayload):
     """Classifies Iris flowers based on sepal and petal sizes."""
 

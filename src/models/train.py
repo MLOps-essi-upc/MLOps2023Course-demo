@@ -48,9 +48,13 @@ with mlflow.start_run():
     # Track the CO2 emissions of training the model
     emissions_output_folder = METRICS_DIR
     with EmissionsTracker(
+        project_name="iowa-house-prices",
+        measure_power_secs=1,
+        tracking_mode="process",
         output_dir=emissions_output_folder,
         output_file="emissions.csv",
-        on_csv_write="update",
+        on_csv_write="append",
+        default_cpu_power=45,
     ):
         # Then fit the model to the training data
         iowa_model.fit(X_train, y_train)

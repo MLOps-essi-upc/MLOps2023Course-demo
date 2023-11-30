@@ -118,6 +118,11 @@ server {
 }
 ```
 
+Then run the following command to add a soft link into the sites-enabled folder of nginx:
+```shell
+sudo ln -s /etc/nginx/sites-available/fastapi-app /etc/nginx/sites-enabled/fastapi-app
+```
+
 5. Restart nginx
 ```shell
 sudo systemctl restart nginx

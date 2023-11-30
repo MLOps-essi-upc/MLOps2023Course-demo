@@ -93,4 +93,6 @@ checkpoint = context.add_or_update_checkpoint(
 
 # Finally, we run our checkpoint and view the results on the browser
 checkpoint_result = checkpoint.run()
-context.view_validation_result(checkpoint_result)
+
+context.build_data_docs()
+# context.open_data_docs()
