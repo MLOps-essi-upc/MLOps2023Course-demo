@@ -70,7 +70,7 @@ This project follows the structure proposed by Lanubile et al. [1].
             <td rowspan="2"><b>Milestone 5 &mdash; Model Packaging</b></td>
             <td>Containers</td>
             <td>Docker, Docker Compose, Kubernetes</td>
-            <td></td>
+            <td><a href="docs/docker-demo.md">Docker demo</a></td>
         </tr> 
     </tbody>
 </table>
