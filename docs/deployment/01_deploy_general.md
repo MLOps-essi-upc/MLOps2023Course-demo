@@ -8,12 +8,16 @@ This guide provides step-by-step instructions to deploy ML models through an API
 
 2. Sign up for an account on the chosen cloud provider and follow the instructions to enable the free-tier access.
 
-| Cloud Provider | Free compute hours | Free GPU hours | Free storage | Max Memory offered | Free tier duration |
-|----------------|--------------------|----------------|--------------|--------------------|--------------------|
-| AWS            | 750 hours          | 0              | 5 GB (S3) and 30 GB (EBS)         | 1 GB               | 12 months          |
-| Azure          | 750 hours          | 0              | 5 GB (Blob Storage) and 128 GB (Managed disks)         | 1 to 4 GB depending on the instance               | 12 months          |
-| GCP            | 750 hours + 300 USD | 0              | 30 GB         | 0.6 GB               | 12 months          |
-| Virtech        | Unlimited          | 0              | 20 GB        | 4 GB          | 1 semester         |
+### Cloud Providers Comparison
+| Cloud Provider | Free compute hours/month | Free GPU hours/month | Free storage                                   | Max Memory offered                  | Free tier duration  |
+| -------------- | ------------------------ | -------------------- | ---------------------------------------------- | ----------------------------------- | ------------------- |
+| AWS            | 750 hours                | 0                    | 5 GB (S3) and 30 GB (EBS)                      | 1 GB                                | 12 months           |
+| Azure          | 750 hours                | 0                    | 5 GB (Blob Storage) and 128 GB (Managed disks) | 1 to 4 GB depending on the instance | 12 months           |
+| GCP            | 750 hours                | 0                    | 30 GB                                          | 0.6 GB                              | 12 months + 300 USD |
+| Okteto         | Unlimited                | 0                    | 5 GB                                           | 3 GB                                | Unlimited           |
+| Virtech        | Unlimited                | 0                    | 20 GB                                          | 4 GB                                | 1 semester          |
+
+For more information about the free-tier options of each cloud provider, please refer to the following official documentation.
 
 ## Step 2: Provision a Virtual Machine
 
