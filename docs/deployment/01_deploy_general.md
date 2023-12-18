@@ -117,7 +117,7 @@ server {
     server_name X.X.X.X;
 
     location / {
-        proxy_pass http://X.X.X.X:5000;
+        proxy_pass http://localhost:5000;
     }
 }
 ```
