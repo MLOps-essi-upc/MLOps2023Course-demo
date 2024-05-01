@@ -19,12 +19,12 @@ uvicorn = {extras = ["standard"], version = "<0.25"}
 great-expectations = "<0.19"
 
 [tool.poetry.group.dev.dependencies]
-black = "<23.12"
+black = "<24.5"
 isort = "<5.14"
 bandit = "<1.9"
-pylint = "<3.1"
-pytest = "<7.6"
-pytest-cov = "<4.3"
+pylint = "<3.2"
+pytest = "<8.3"
+pytest-cov = "<5.1"
 httpx = "<0.26"
 
 [tool.coverage.run]
