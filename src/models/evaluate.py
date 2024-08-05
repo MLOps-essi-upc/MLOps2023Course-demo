@@ -6,7 +6,7 @@ import mlflow
 import pandas as pd
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-from src import METRICS_DIR, PROCESSED_DATA_DIR
+from src.config import METRICS_DIR, PROCESSED_DATA_DIR
 
 # Path to the models folder
 MODELS_FOLDER_PATH = Path("models")

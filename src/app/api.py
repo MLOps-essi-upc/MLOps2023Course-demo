@@ -1,5 +1,6 @@
 """Main script: it includes our API initialization and endpoints."""
 
+from contextlib import asynccontextmanager
 import pickle
 from datetime import datetime
 from functools import wraps
@@ -9,46 +10,14 @@ from typing import List
 from fastapi import FastAPI, HTTPException, Request
 from codecarbon import track_emissions
 
-from src import METRICS_DIR, MODELS_DIR
+from src.config import METRICS_DIR, MODELS_DIR
 from src.app.schemas import IrisType, PredictPayload
 
 model_wrappers_list: List[dict] = []
 
-# Define application
-app = FastAPI(
-    title="Yet another Iris example",
-    description="This API lets you make predictions on the Iris dataset using a couple of simple models.",
-    version="0.1",
-)
 
-
-def construct_response(f):
-    """Construct a JSON response for an endpoint's results."""
-
-    @wraps(f)
-    def wrap(request: Request, *args, **kwargs):
-        results = f(request, *args, **kwargs)
-
-        # Construct response
-        response = {
-            "message": results["message"],
-            "method": request.method,
-            "status-code": results["status-code"],
-            "timestamp": datetime.now().isoformat(),
-            "url": request.url._url,
-        }
-
-        # Add data
-        if "data" in results:
-            response["data"] = results["data"]
-
-        return response
-
-    return wrap
-
-
-@app.on_event("startup")
-def _load_models():
+@asynccontextmanager
+async def lifespan(app: FastAPI):
     """Loads all pickled models found in `MODELS_DIR` and adds them to `models_list`"""
 
     model_paths = [
@@ -62,10 +31,23 @@ def _load_models():
             model_wrapper = pickle.load(file)
             model_wrappers_list.append(model_wrapper)
 
+    yield
+
+    # Clear the list of models to avoid memory leaks
+    model_wrappers_list.clear()
+
+
+# Define application
+app = FastAPI(
+    title="Yet another Iris example",
+    description="This API lets you make predictions on the Iris dataset using a couple of simple models.",
+    version="0.1",
+    lifespan=lifespan,
+)
+
 
 @app.get("/", tags=["General"])  # path operation decorator
-@construct_response
-def _index(request: Request):
+async def _index():
     """Root endpoint."""
 
     response = {
@@ -77,8 +59,7 @@ def _index(request: Request):
 
 
 @app.get("/models", tags=["Prediction"])
-@construct_response
-def _get_models_list(request: Request, type: str = None):
+def _get_models_list(model_type: str | None = None):
     """Return the list of available models"""
 
     available_models = [
@@ -88,28 +69,27 @@ def _get_models_list(request: Request, type: str = None):
             "accuracy": model["metrics"],
         }
         for model in model_wrappers_list
-        if model["type"] == type or type is None
+        if model["type"] == model_type or model_type is None
     ]
 
-    if not available_models:
+    if not available_models and model_type is not None:
         raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Type not found")
-    else:
-        return {
-            "message": HTTPStatus.OK.phrase,
-            "status-code": HTTPStatus.OK,
-            "data": available_models,
-        }
+
+    return {
+        "message": HTTPStatus.OK.phrase,
+        "status-code": HTTPStatus.OK,
+        "data": available_models,
+    }
 
 
-@app.post("/models/{type}", tags=["Prediction"])
-@construct_response
+@app.post("/models/{model_type}", tags=["Prediction"])
 @track_emissions(
     project_name="iris-prediction",
     measure_power_secs=1,
     save_to_file=True,
     output_dir=METRICS_DIR,
 )
-def _predict(request: Request, type: str, payload: PredictPayload):
+def _predict(model_type: str, payload: PredictPayload):
     """Classifies Iris flowers based on sepal and petal sizes."""
 
     # sklearn's `predict()` methods expect a 2D array of shape [n_samples, n_features]
@@ -123,7 +103,9 @@ def _predict(request: Request, type: str, payload: PredictPayload):
         ]
     ]
 
-    model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
+    model_wrapper = next(
+        (m for m in model_wrappers_list if m["type"] == model_type), None
+    )
 
     if model_wrapper:
         prediction = model_wrapper["model"].predict(features)

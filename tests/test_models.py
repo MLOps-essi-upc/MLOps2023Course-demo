@@ -3,7 +3,7 @@ import pickle
 import pytest
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-from src import MODELS_DIR, PROCESSED_DATA_DIR
+from src.config import MODELS_DIR, PROCESSED_DATA_DIR
 from src.models.evaluate import load_validation_data
 
 
