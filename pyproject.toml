@@ -8,13 +8,13 @@ packages = [{include = "mlops2023course_demo"}]
 
 [tool.poetry.dependencies]
 python = ">3.9,<3.12"
-dvc = "<3.31"
-mlflow = "<2.9.0"
+dvc = "<3.60"
+mlflow = "<2.14.0"
 pandas = "<2.3"
-scikit-learn = "<1.5"
+scikit-learn = "<1.6"
 python-dotenv = "<1.2"
 codecarbon = "<2.5"
-fastapi = "<0.105"
+fastapi = "<0.120"
 uvicorn = {extras = ["standard"], version = "<0.25"}
 great-expectations = "<0.19"
 
@@ -26,6 +26,7 @@ pylint = "<3.1"
 pytest = "<7.6"
 pytest-cov = "<4.3"
 httpx = "<0.26"
+deptry = "^0.18.0"
 
 [tool.coverage.run]
 omit = ["src/prepare.py", "src/evaluate.py", "src/train.py", "src/train_api_demo_models.py"]

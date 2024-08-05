@@ -29,7 +29,7 @@ This project follows the structure proposed by Lanubile et al. [1].
             <td rowspan="3"><b>Milestone 2 &mdash; Model building: repoducibility</b></td>
             <td>Project structure</td>
             <td>Cookiecutter data science template</td>
-            <td></td>
+            <td><a href="docs/project-setup.md">Project setup guide</a></td>
         </tr>
         <tr>
             <td>Code and data versioning</td>
