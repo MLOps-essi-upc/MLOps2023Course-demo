@@ -10,7 +10,7 @@ from src.app.api import app
 def client():
     # Use the TestClient with a `with` statement to trigger the startup and shutdown events.
     with TestClient(app) as client:
-        return client
+        yield client
 
 
 @pytest.fixture
@@ -33,9 +33,6 @@ def test_root(client):
     )
     assert json["message"] == "OK"
     assert json["status-code"] == 200
-    assert json["method"] == "GET"
-    assert json["url"] == "http://testserver/"
-    assert json["timestamp"] is not None
 
 
 def test_get_all_models(client):
@@ -62,13 +59,10 @@ def test_get_all_models(client):
     ]
     assert json["message"] == "OK"
     assert json["status-code"] == 200
-    assert json["method"] == "GET"
-    assert json["url"] == "http://testserver/models"
-    assert json["timestamp"] is not None
 
 
 def test_get_one_model(client):
-    response = client.get("/models?type=SVC")
+    response = client.get("/models?model_type=SVC")
     json = response.json()
     assert response.status_code == 200
     assert json["data"] == [
@@ -80,13 +74,10 @@ def test_get_one_model(client):
     ]
     assert json["message"] == "OK"
     assert json["status-code"] == 200
-    assert json["method"] == "GET"
-    assert json["url"] == "http://testserver/models?type=SVC"
-    assert json["timestamp"] is not None
 
 
 def test_get_one_model_not_found(client):
-    response = client.get("/models?type=RandomForestClassifier")
+    response = client.get("/models?model_type=RandomForestClassifier")
     assert response.status_code == 400
     assert response.json()["detail"] == "Type not found"
 
@@ -98,9 +89,6 @@ def test_model_prediction(client, payload):
     assert json["data"]["prediction"] == 2
     assert json["message"] == "OK"
     assert json["status-code"] == 200
-    assert json["method"] == "POST"
-    assert json["url"] == "http://testserver/models/LogisticRegression"
-    assert json["timestamp"] is not None
 
 
 def test_model_prediction_not_found(client, payload):

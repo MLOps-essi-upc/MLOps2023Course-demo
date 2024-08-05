@@ -1,7 +1,7 @@
 import pandas as pd
 
 import great_expectations as gx
-from src import PROCESSED_DATA_DIR
+from src.config import PROCESSED_DATA_DIR
 
 # We import the existing DataContext
 context = gx.get_context()

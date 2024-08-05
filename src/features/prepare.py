@@ -5,7 +5,7 @@ import yaml
 from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 
-from src import PROCESSED_DATA_DIR, RAW_DATA_DIR
+from src.config import PROCESSED_DATA_DIR, RAW_DATA_DIR
 
 # Path of the parameters file
 params_path = Path("params.yaml")

@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score, train_test_split
 from sklearn.svm import SVC
 
-from src import MODELS_DIR
+from src.config import MODELS_DIR
 
 model_wrappers_list: List[dict] = []
 
