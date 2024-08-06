@@ -1,20 +1,21 @@
 """Main script: it includes our API initialization and endpoints."""
 
-from contextlib import asynccontextmanager
 import pickle
-from datetime import datetime
-from functools import wraps
+from contextlib import asynccontextmanager
 from http import HTTPStatus
 from typing import List
 
-from fastapi import FastAPI, HTTPException, Request
+import numpy as np
+import cv2
+import tensorflow as tf
+import tensorflow_hub as hub
 from codecarbon import track_emissions
+from fastapi import FastAPI, HTTPException, Request, UploadFile
 
+from src.app.schemas import IrisPredictionPayload, IrisType
 from src.config import METRICS_DIR, MODELS_DIR
-from src.app.schemas import IrisType, PredictPayload
 
 model_wrappers_list: List[dict] = []
-
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,6 +31,9 @@ async def lifespan(app: FastAPI):
         with open(path, "rb") as file:
             model_wrapper = pickle.load(file)
             model_wrappers_list.append(model_wrapper)
+    
+    cv_model = hub.KerasLayer("https://www.kaggle.com/models/google/mobilenet-v3/TensorFlow2/small-075-224-classification/1")
+    cv_model.build([None, 224, 224, 3])  # Batch input shape.
 
     yield
 
@@ -89,7 +93,7 @@ def _get_models_list(model_type: str | None = None):
     save_to_file=True,
     output_dir=METRICS_DIR,
 )
-def _predict(model_type: str, payload: PredictPayload):
+def _predict(model_type: str, payload: IrisPredictionPayload):
     """Classifies Iris flowers based on sepal and petal sizes."""
 
     # sklearn's `predict()` methods expect a 2D array of shape [n_samples, n_features]
@@ -132,3 +136,28 @@ def _predict(model_type: str, payload: PredictPayload):
             status_code=HTTPStatus.BAD_REQUEST, detail="Model not found"
         )
     return response
+
+
+#Create and endpoint to classify an image
+@app.post("/models/image", tags=["Prediction"])
+@track_emissions(
+    project_name="cats-and-dogs-prediction",
+    measure_power_secs=1,
+    save_to_file=True,
+    output_dir=METRICS_DIR,
+)
+def _predict_image(image: UploadFile):
+    """Classifies an image as a cat or a dog."""
+    image_stream = image.file.read()
+    image.file.close()
+
+    # Decode image
+    # imgage_array = np.fromstring(image_stream, np.uint8)
+    # img_np = cv2.imdecode(imgage_array, cv2.IMREAD_COLOR)
+    # img_np = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
+
+    tf_image = tf.image.decode_image(image_stream, channels=3, dtype=tf.float32)
+    predicted_label = cv_model(tf_image)
+
+    # model predicts one of the 1000 ImageNet classes
+    print(predicted_label)

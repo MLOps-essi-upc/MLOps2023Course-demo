@@ -5,7 +5,7 @@ from enum import Enum
 from pydantic import BaseModel
 
 
-class PredictPayload(BaseModel):
+class IrisPredictionPayload(BaseModel):
     sepal_length: float
     sepal_width: float
     petal_length: float
@@ -24,6 +24,6 @@ class PredictPayload(BaseModel):
 
 
 class IrisType(Enum):
-    setosa = 0
-    versicolor = 1
-    virginica = 2
+    SETOSA = 0
+    VERSICOLOR = 1
+    VIRGINICA = 2
