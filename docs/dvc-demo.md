@@ -25,26 +25,23 @@ First, we need to install DVC. We can do this by running the following command:
 
 ### Using poetry <!-- omit in toc -->
 ```bash
-poetry add dvc@<3.0
+poetry add dvc
 ```
 
 ### Using pdm <!-- omit in toc -->
 ```bash
-```bash
-pdm add dvc<3.0
+pdm add dvc
 ```
 
 ### Using pipenv <!-- omit in toc -->
 ```bash
-pipenv install "dvc<3.0"
+pipenv install dvc
 ```
 
 ### Using pip <!-- omit in toc -->
 ```bash
-pip install "dvc<3.0"
+pip install dvc
 ```
-
-> **Note:** DagsHub does not support DVC 3.0 and its new hashing mechanism. Please use DVC 2.x for now.
 
 ## Initialize DVC
 To initialize DVC in our project. We can do this by running the [`dvc init`](https://dvc.org/doc/command-reference/init) command:
@@ -58,8 +55,8 @@ This will create a `.dvc` directory in our project, and a `.dvcignore` file to s
 ## Configure DVC
 Next, we will configure DVC to use a remote storage to store the data and the models. We will use Dagshub Storage as a
 remote since it has 100GB of free storage and has a good integration with DVC. To do this, we first need to create a
-repository in Dagshub or to link our GitHub repository to Dagshub. Then, we can easily configure DVC to use Dagshub
-Storage as its remote by following the instructions in your Dagshub repository.
+repository in Dagshub or to [link our GitHub repository to Dagshub](https://dagshub.com/docs/integration_guide/github/). Then, we can easily [configure DVC to use Dagshub
+Storage](https://dagshub.com/docs/feature_guide/dagshub_storage/#working-with-the-dvc-remote) as its remote by following the instructions in your Dagshub repository.
 
 <p align="center">
     <img src="static/dagshub-dvc-config.png" width="700" alt="Dagshub Storage configuration">
