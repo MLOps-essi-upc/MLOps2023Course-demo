@@ -7,16 +7,22 @@ readme = "README.md"
 packages = [{include = "mlops2023course_demo"}]
 
 [tool.poetry.dependencies]
-python = ">3.9,<3.12"
-dvc = "<3.60"
-mlflow = "<2.16.0"
+python = ">=3.10,<3.12"
+dvc = ">3.0,<3.60"
+mlflow = ">2.0,<2.16.0"
 pandas = "<2.3"
 scikit-learn = "<1.6"
 python-dotenv = "<1.2"
 codecarbon = "<2.6"
 fastapi = "<0.120"
 uvicorn = {extras = ["standard"], version = "<0.31"}
+numpy = "<2"
 great-expectations = "<0.19"
+opencv-python = "^4.10.0.84"
+tensorflow = ">2.0,<2.18.0"
+tensorflow-hub = ">0.5"
+python-multipart = "^0.0.9"
+pillow = "^10.4.0"
 
 [tool.poetry.group.dev.dependencies]
 black = "<24.9"
@@ -27,6 +33,7 @@ pytest = "<8.4"
 pytest-cov = "<5.1"
 httpx = "<0.28"
 deptry = "^0.18.0"
+
 
 [tool.coverage.run]
 omit = ["src/prepare.py", "src/evaluate.py", "src/train.py", "src/train_api_demo_models.py"]

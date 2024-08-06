@@ -1,5 +1,6 @@
 from http import HTTPStatus
 
+import cv2
 import pytest
 from fastapi.testclient import TestClient
 
@@ -36,7 +37,7 @@ def test_root(client):
 
 
 def test_get_all_models(client):
-    response = client.get("/models")
+    response = client.get("/models/tabular")
     json = response.json()
     assert response.status_code == 200
     assert json["data"] == [
@@ -62,7 +63,7 @@ def test_get_all_models(client):
 
 
 def test_get_one_model(client):
-    response = client.get("/models?model_type=SVC")
+    response = client.get("/models/tabular?model_type=SVC")
     json = response.json()
     assert response.status_code == 200
     assert json["data"] == [
@@ -77,13 +78,13 @@ def test_get_one_model(client):
 
 
 def test_get_one_model_not_found(client):
-    response = client.get("/models?model_type=RandomForestClassifier")
+    response = client.get("/models/tabular?model_type=RandomForestClassifier")
     assert response.status_code == 400
     assert response.json()["detail"] == "Type not found"
 
 
 def test_model_prediction(client, payload):
-    response = client.post("/models/LogisticRegression", json=payload)
+    response = client.post("/models/tabular/LogisticRegression", json=payload)
     json = response.json()
     assert response.status_code == 200
     assert json["data"]["prediction"] == 2
@@ -92,6 +93,22 @@ def test_model_prediction(client, payload):
 
 
 def test_model_prediction_not_found(client, payload):
-    response = client.post("/models/RandomForestClassifier", json=payload)
+    response = client.post("/models/tabular/RandomForestClassifier", json=payload)
     assert response.status_code == HTTPStatus.BAD_REQUEST
     assert response.json()["detail"] == "Model not found"
+
+
+def test_classify_image(client):
+    image = cv2.imread("tests/test-data/tree_frog.JPEG")
+
+    response = client.post(
+            "/models/image",
+            files={"file": ("image.jpg", cv2.imencode(".jpg", image)[1].tobytes(), "image/jpeg")},
+            timeout=30,
+        )
+
+    json = response.json()
+    assert response.status_code == 200
+    assert json["message"] == "OK"
+    assert json["status-code"] == 200
+    assert json["data"]["predicted_class"] == "tree_frog"
