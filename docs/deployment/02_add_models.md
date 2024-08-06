@@ -57,9 +57,9 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
         def __init__(self):
             super().__init__(models_names.Pythia_70m, ML_task.CODE)
-            
+
         def predict(self, user_input: str):
-            
+
             model = GPTNeoXForCausalLM.from_pretrained(
             "EleutherAI/pythia-70m",
             revision="step3000",
@@ -79,7 +79,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
             response = {
                 "prediction" : tokenizer.decode(tokens[0]),
             }
-            
+
             return response
     ```
 
@@ -109,8 +109,8 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
     @construct_response
     def _predict_pythia_70m(request: Request, payload: PredictPythia_70m):
         """T5 model."""
-        
-        input_text = payload.input_text 
+
+        input_text = payload.input_text
         print("Input text")
         print(input_text)
 
@@ -119,7 +119,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
         if input_text:
             prediction = model.predict(input_text)
-            
+
             response = {
                 "message": HTTPStatus.OK.phrase,
                 "status-code": HTTPStatus.OK,
@@ -143,7 +143,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
    - See [manuals](../manuals/) to check our guides to create the API or deploy the API.
    - In this case we run the API using:
    - ```bash
-       uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload  --reload-dir . --reload-dir app 
+       uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload  --reload-dir . --reload-dir app
        ```
    - Go to the [Swagger UI](http://localhost:8000/docs)
    - Select the model and click on the 'Try it out' button. Note that the endpoint must previously be defined in api.py
@@ -190,7 +190,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
     """
     def __init__(self):
         super().__init__(models_names.CNN, ML_task.CV)
-        
+
     def predict(self, user_input: str, n = 5):
         dataset = "fashion"
         label_names = {
@@ -208,7 +208,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
         saved_model_dir = f"models/model_{dataset}.h5"
 
-        # Get test set 
+        # Get test set
         fashion_mnist=keras.datasets.fashion_mnist
         (_, _), (x_test, y_test) = fashion_mnist.load_data()
 
@@ -219,13 +219,13 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
             print("Model loaded correctly")
         except:
             print("There is a problem with the file path")
-            
+
         def see_x_image(x,y,name=None,caption=True, save_dir="."):
             '''
             See image
             '''
             plt.figure()
-            
+
             plt.imshow((x.reshape((28,28))).astype("uint8"))
             title=str(y)
             if name:
@@ -236,7 +236,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
             print(save_dir)
             plt.savefig(save_dir+"/"+dataset+"_image"+ ".png")
             plt.axis("off")
-        
+
         if int(user_input) <= len(x_test):
             ran = int(user_input)
             print(" User entered ",user_input)
@@ -263,12 +263,12 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
         is_correct = False
         if y_test[ran] == cat_pred:
             is_correct = True
-        
+
         print("Prediction: ",cat_pred)
         print("Prediction clothes: ", label_names[cat_pred])
         print("Correct label: ",y_test[ran])
         print(f"is_correct: ", is_correct)
-            
+
         response = {
             "prediction": label,
             "is_correct": is_correct,
@@ -302,8 +302,8 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
     @construct_response
     def _predict_cnn(request: Request, payload: PredictCNN):
         """CNN model."""
-        
-        input_text = payload.input_text 
+
+        input_text = payload.input_text
         print("Input text")
         print(input_text)
 
@@ -312,7 +312,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
 
         if input_text:
             model_response = model.predict(input_text)
-            
+
             response = {
                 "message": HTTPStatus.OK.phrase,
                 "status-code": HTTPStatus.OK,
@@ -338,7 +338,7 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
    - See [manuals](../manuals/) to check our guides to create the API or deploy the API.
    - In this case we run the API using:
    - ```bash
-       uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload  --reload-dir . --reload-dir app 
+       uvicorn app.api:app  --host 0.0.0.0 --port 8000  --reload  --reload-dir . --reload-dir app
        ```
    - Go to the [Swagger UI](http://localhost:8000/docs)
    - Select the model and click on the 'Try it out' button. Note that the endpoint must previously be defined in api.py
@@ -362,6 +362,3 @@ Guide to add pretrained ML models (from Hugging Face, hdf5 format, pickle format
   src="../static/deployment/h5/h5_response_03.png"
 </figure></center>
 <p style="text-align: center;">Response using h5 CNN model.</p>
-
-
-

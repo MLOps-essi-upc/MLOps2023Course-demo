@@ -13,7 +13,7 @@
    - Caution for users:
      - While Budgets are a powerful tool for managing costs, it's essential to emphasize the importance of cost-consciousness
        - Cost: Verify the costs of using your resources: https://cloud.google.com/pricing
-       - Cleanup: Clean up  resources that are no longer needed. 
+       - Cleanup: Clean up  resources that are no longer needed.
        - Alerts: Set up alerts to be sent to your email in case you exceed any budget.
 4. Create a new project (See 'My First Project').
 
@@ -39,7 +39,7 @@
 </figure></center>
 <p style="text-align: center;">Create VM instance.</p>
 
-7. Select the desired configuration for the virtual machine, such as machine type, CPU, memory, and storage options. 
+7. Select the desired configuration for the virtual machine, such as machine type, CPU, memory, and storage options.
 Allow https traffic.
 - In this case we use: N2 series, 8GB RAM and 30 GB of storage.
 - Region: europe-southwest
@@ -61,7 +61,7 @@ Allow https traffic.
 
 9. Configure the additional settings as per your requirements, including the region, network settings, and SSH access.
 
-10. Review the configuration and click on the "Create" button to create your virtual machine. Note the monthly estimate 
+10. Review the configuration and click on the "Create" button to create your virtual machine. Note the monthly estimate
 is \$68 and we have \$300 credit, in that case we will not exceed the free resources. However, you can also set a Budget
 for your project, and set alarms (See https://cloud.google.com/billing/docs/how-to/budgets).
 
@@ -73,7 +73,7 @@ for your project, and set alarms (See https://cloud.google.com/billing/docs/how-
 
 
 
-11.  Wait for the virtual machine to be provisioned. Once it is ready, you can find its details on the Compute Engine 
+11.  Wait for the virtual machine to be provisioned. Once it is ready, you can find its details on the Compute Engine
 dashboard, including its public IP.
 
 <center><figure>
@@ -84,7 +84,7 @@ dashboard, including its public IP.
 
 12.   To connect to the virtual machine via SSH, click on the SSH button next to the virtual machine instance name.
 This will open a terminal window directly in your browser.
-    
+
 <center><figure>
   <img
   src="../static/deployment/gcp/gcp_ssh_in_browser.png"
@@ -94,7 +94,7 @@ This will open a terminal window directly in your browser.
 13.  You are now connected to your GCP free tier virtual machine and can start using it for your desired tasks.
 
 14. To connect to the VM via SSH from your local machine:
-    1.  Generate your SSH keys 
+    1.  Generate your SSH keys
     ```shell
         ssh-keygen -t rsa -f ~/.ssh/gcp-vm
     ```

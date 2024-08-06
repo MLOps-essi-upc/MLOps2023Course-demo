@@ -99,7 +99,7 @@ We can now test that the application is working. These are some of the possibili
   print(json.loads(response.text))
   ```
 
-- Use an external tool like [Postman](https://www.postman.com), which lets you execute and manage tests that can be 
+- Use an external tool like [Postman](https://www.postman.com), which lets you execute and manage tests that can be
 saved and shared with others.
 
 ### Access the API documentation

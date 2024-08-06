@@ -87,7 +87,7 @@ We will use [Poetry](https://python-poetry.org) as the dependency manager for ou
     git remote add origin url-to-remote-repository
     ```
     Replace `url-to-remote-repository` with the URL of the remote repository you created in step 7.
-    
+
 14. Push the changes to the remote repository:
     ```bash
     git push -u origin master
