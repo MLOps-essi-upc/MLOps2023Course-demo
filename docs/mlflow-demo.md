@@ -8,6 +8,7 @@ learning project.
 - [MLflow experiments](#mlflow-experiments)
 - [Add MLflow tracking to the code](#add-mlflow-tracking-to-the-code)
 - [MLflow UI](#mlflow-ui)
+- [Using MLflow in Kaggle, Colab, or other cloud environments](#using-mlflow-in-kaggle-colab-or-other-cloud-environments)
 - [DVC pipelines + MLflow](#dvc-pipelines--mlflow)
 
 
@@ -36,12 +37,11 @@ pip install mlflow
 ```
 
 ## Configure a tracking server
-By default MLflow stores the tracking data locally in an `mlruns` subdirectory of where you ran the code. However, we
-can configure MLflow to use a shared storage in a remote server.
+By default MLflow stores the tracking data locally in an `mlruns` subdirectory of where you ran the code. However, we are going to work in a collaboratibe project, so we need to use a shared storage so that all the team members can access the tracking data. MLflow supports several tracking servers, such as AWS S3, Azure Blob Storage, Google Cloud Storage, and Databricks.
 
 In this demo we will use Dagshub  as it provides an easy
-way to configure a tracking server. To do this, we first need to create a repository in Dagshub or to link our GitHub
-repository to Dagshub. Then, we can easily configure MLflow to use Dagshub as its tracking server by setting the
+way to configure a tracking server. To do this, we first need to create a
+repository in Dagshub or to [link our GitHub repository to Dagshub](https://dagshub.com/docs/integration_guide/github/). Then, we can easily [configure MLflow to use Dagshub as its tracking server](https://dagshub.com/docs/integration_guide/mlflow_tracking/) by setting the
 environment valiables shown in the Dagshub repository.
 
 <p align="center">
@@ -56,7 +56,7 @@ MLFLOW_TRACKING_USERNAME=your_username
 MLFLOW_TRACKING_PASSWORD=your_token
 ```
 
-Then, we can load the environment variables adding the following code to our `__init__.py` file:
+Then, we can load the environment variables adding the following code to our `config.py` file:
 
 ```python
 from dotenv import load_dotenv
@@ -108,6 +108,13 @@ get the MLflow UI URL by clicking on the remote icon and opening the experiments
 <p align="center">
     <img src="static/mlflow-gui.png" width="700" alt="Dagshub MLflow UI">
 </p>
+
+## Using MLflow in Kaggle, Colab, or other cloud environments
+If you are using Kaggle, Colab, or other cloud environments, you can use MLflow with a remote tracking server. You just need to set the environment variables to point to the tracking server, as you did in the `.env` file.
+
+For example, to use MLflow with Kaggle, you can set the environment variables in the Kaggle notebook settings. See the [Kaggle documentation](https://www.kaggle.com/docs/notebooks#environment-variables) for more details.
+
+For Colab, you can add your `.env` file to your Google Drive and load the environment variables in the Colab notebook as in the `config.py` file.
 
 ## DVC pipelines + MLflow
 You need to keep in mind that MLflow interprets each pipeline step as a run. Therefore, if you are using DVC pipelines
