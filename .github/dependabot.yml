@@ -17,6 +17,7 @@ updates:
           - "pytest*"
           - "pylint"
           - "bandit"
+          - "httpx"
       app-dependencies:
         patterns:
           - "pandas"

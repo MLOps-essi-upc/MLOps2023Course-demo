@@ -1,5 +1,5 @@
-
 from pathlib import Path
+import logging
 
 from dotenv import load_dotenv
 
@@ -19,3 +19,5 @@ MODELS_DIR = PROJ_ROOT / "models"
 
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
+
+logging.basicConfig(level=logging.INFO)
