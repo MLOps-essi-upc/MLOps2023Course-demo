@@ -3,7 +3,7 @@
 - How to deploy ML models with FastAPI + uvicorn using Okteto platform
 
 ## What is okteto?
-Okteto is a platform that simplifies the process of launching cloud development environments without requiring the expertise to do this yourself. 
+Okteto is a platform that simplifies the process of launching cloud development environments without requiring the expertise to do this yourself.
 Okteto's Development Environments enable you to automatically deploy your application to a cloud development environment and see all of your code changes the moment you hit 'save' locally on your machine.
 
 - deploy quickly

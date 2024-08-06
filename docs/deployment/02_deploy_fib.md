@@ -28,4 +28,4 @@
 3.  Clone repository. See [01_deploy_general.md: Step 4](01_deploy_general.md)
 4.  Set Up the Environment. See [01_deploy_general.md: Step 5](01_deploy_general.md)
 5.   Run the API. See [01_deploy_general.md: Step 6](01_deploy_general.md)
-6.   Access the API. See [01_deploy_general.md: Step 7](01_deploy_general.md)  
+6.   Access the API. See [01_deploy_general.md: Step 7](01_deploy_general.md)

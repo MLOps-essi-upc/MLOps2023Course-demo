@@ -28,7 +28,7 @@ torch1.* has the problem with  `low_cpu_mem_usage=True`
   - https://huggingface.co/docs/transformers/main_classes/model
   - no_split_module_classes (`List[str]`): A list of class names for layers we don't want to be split
   - https://github.com/huggingface/transformers/issues/23086
-- Example to raise the error 
+- Example to raise the error
   - ```model = BertForMaskedLM.from_pretrained(pretrained_model_name_or_path = './bert-base-uncased', return_dict = True, device_map="auto")```
 - t5, _no_split_modules
   - https://github.com/huggingface/transformers/blob/main/src/transformers/models/t5/modeling_t5.py#L785
@@ -39,7 +39,7 @@ torch1.* has the problem with  `low_cpu_mem_usage=True`
   - https://github.com/huggingface/transformers/blob/main/src/transformers/modeling_utils.py#L2691
 
 
-### How to use pretrained Huggingface model 
+### How to use pretrained Huggingface model
 
 1. Install Hugging Face "transformers" module
 2. Load pre-trained model
@@ -79,17 +79,17 @@ ssh -L 8000:localhost:8000  alumne@10.4.41.62
 --------------------
 
 ## Using python modules in old or small CPU
-- Cloud providers with free-tier VMs which had this problem: 
+- Cloud providers with free-tier VMs which had this problem:
   - Virtech
 - Errors:
   - Illegal instruction (core dumped)
 - Some CPUs are not able to load some modules such as
   - transformers
-    - `from transformers import pipeline` 
+    - `from transformers import pipeline`
   - tensorflow
-    - `import tensorflow` 
+    - `import tensorflow`
 - Not able to load pipeline
-  - `from transformers import pipeline` 
+  - `from transformers import pipeline`
 - In brief, the error will be thrown if we’re running recent TensorFlow binaries on CPU(s) that do not support Advanced Vector Extensions (AVX), an instruction set that enables faster
 computation especially for vector operations. Starting from TensorFlow 1.6, pre-built TensorFlow binaries use AVX instructions. An except from TensorFlow 1.6 release announcement: tf 1.6 - feb 18, transformers - 19
 - https://tech.amikelive.com/node-887/how-to-resolve-error-illegal-instruction-core-dumped-when-running-import-tensorflow-in-a-python-program/
@@ -128,4 +128,3 @@ computation especially for vector operations. Starting from TensorFlow 1.6, pre-
 
 
 --------------------
-

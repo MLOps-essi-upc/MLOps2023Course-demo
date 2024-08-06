@@ -3,7 +3,7 @@ frozen: true
 deps:
 - path: input/home-data-for-ml-course/test.csv
   repo:
-    url: 
+    url:
       https://github.com/collab-uniba/Software-Solutions-for-Reproducible-ML-Experiments
     rev_lock: 45c6096e481915f7d0c7b6c93b936e2e2411d4da
 outs:

@@ -1,20 +1,15 @@
 """Main script: it includes our API initialization and endpoints."""
 
+import logging
 import pickle
-from io import BytesIO
 from contextlib import asynccontextmanager
 from http import HTTPStatus
 from typing import Dict
-from PIL import Image
-import logging
 
-import numpy as np
-import cv2
 import tensorflow as tf
 import tensorflow_hub as hub
 from codecarbon import track_emissions
-from fastapi import FastAPI, File, HTTPException, Request, UploadFile
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI, HTTPException, UploadFile
 
 from src.app.schemas import IrisPredictionPayload, IrisType
 from src.config import METRICS_DIR, MODELS_DIR
@@ -181,7 +176,9 @@ async def _predict_image(file: UploadFile):
     # tf_image = tf.image.decode_image(image_stream, channels=3, dtype=tf.float32)
     cv_model = model_wrappers_dict["image"]["mobilenet_v3"]["model"]
     predictions = cv_model(tf.expand_dims(image, axis=0))
-    predicted_label = tf.keras.applications.mobilenet_v3.decode_predictions(predictions[:, 1:], top=1)[0][0][1]
+    predicted_label = tf.keras.applications.mobilenet_v3.decode_predictions(
+        predictions[:, 1:], top=1
+    )[0][0][1]
 
     logging.info("Predicted class %s", predicted_label)
 

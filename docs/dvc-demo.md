@@ -1,5 +1,5 @@
 # DVC demo for the MLOps 2023-24 course <!-- omit in toc -->
-In this demo we will see the main features of [DVC](https://dvc.org/) to version control the data and the models of a 
+In this demo we will see the main features of [DVC](https://dvc.org/) to version control the data and the models of a
 simple machine learning project.
 
 The scrips used in this demo are based on the [SE4AI2021Course_DVC-demo](https://github.com/se4ai2122-cs-uniba/SE4AI2021Course_DVC-demo)
@@ -134,7 +134,7 @@ The options used in the command are the following:
 source code itself is marked as a dependency as well. If any of these files change, DVC will know that this stage needs
 to be reproduced when the pipeline is executed.
 * `-o`: specify a file or directory that is the result of running the command.
-* The last line, `python -m src.features.prepare` is the command to run in this stage 
+* The last line, `python -m src.features.prepare` is the command to run in this stage
 
 > **Note:** DVC uses the pipeline definition to automatically track the data used and produced by any stage, so there's no
 need to manually run `dvc add` for data/prepared!

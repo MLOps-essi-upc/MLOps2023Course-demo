@@ -102,10 +102,16 @@ def test_classify_image(client):
     image = cv2.imread("tests/test-data/tree_frog.JPEG")
 
     response = client.post(
-            "/models/image",
-            files={"file": ("image.jpg", cv2.imencode(".jpg", image)[1].tobytes(), "image/jpeg")},
-            timeout=30,
-        )
+        "/models/image",
+        files={
+            "file": (
+                "image.jpg",
+                cv2.imencode(".jpg", image)[1].tobytes(),
+                "image/jpeg",
+            )
+        },
+        timeout=30,
+    )
 
     json = response.json()
     assert response.status_code == 200
