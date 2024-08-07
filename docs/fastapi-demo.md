@@ -47,18 +47,22 @@ pip install fastapi "uvicorn[standard]" httpx
 We can now create a simple API. To do this, we create a new file called [`api.py`](../src/app/api.py) in the `src/app`
 directory. In this file, we will create a FastAPI application and three endpoints:
 - `/` will be the root endpoint, which will return a welcome message;
-- `/models` will return a list of the available models and their metrics. Optionally, we can use the query parameter
+- `/models/tabular` will return a list of the available tabular models and their metrics. Optionally, we can use the query parameter
   `type` to filter the models.
-- `/models/{type}` will return the prediction of the model specified in the path parameter.
+- `/predict/tabular/{type}` will return the prediction using the model specified in the path parameter.
 
-Since the `/models/{type}` endpoint receives a payload specifying the features of the flower, we will create a Pydantic
+Since the `/predict/tabular/{type}` endpoint receives a payload specifying the features of the flower, we will create a Pydantic
 class called `PredictPayload` to represent our payload. This class will be located in the
 [`schemas.py`](../src/app/schemas.py) file.
 
+- `/predict/image` will return the prediction using the image model.
+
+Since the `/predict/image` endpoint receives a file upload, we will use the `UploadFile` class from FastAPI to represent our payload.
 
 In addition, we create two extra functions:
-- `construct_response` will be used as a wrapper to return the response in a standard format;
-- `_load_models` will be used to load the models from the `models/` directory on startup. *Note that this function is automatically called when initializing the API. Thus, you do not need to call it inside your endpoints. Just create a global variable where you store your model/s*
+- `file_to_image` will be a utility function that will convert the uploaded file to an image and reshape it for the model.
+- `lifespan` will be a FastAPI event handler that will be executed when the application starts and stops. In this case, we will load the models when the application starts and close them when the application stops.
+
 
 
 ## Start the server
@@ -143,6 +147,6 @@ For example:
 ## Test the API
 We can now test the API using [Pytest](https://docs.pytest.org/en/6.2.x/). To do this, we create a new file called [`test_api.py`](../src/tests/test_api.py) in the `tests/` directory.
 
-Here we will create a fixture called `client` that will be used to test the API. We will also create a second fixture called `payload` that will be used to test the `/models/{type}` endpoint. Since our endpoints expect the payload in JSON format we must build the `payload` return value according to the same format. If you have correctly implemented your API, the `/docs` endpoint will show you an example of the payload expected by each of your endpoints.
+Here we will create a fixture called `client` that will be used to test the API. We will also create a second fixture called `payload` that will be used to test the `/predict/tabular/{type}` endpoint. Since our endpoints expect the payload in JSON format we must build the `payload` return value according to the same format. If you have correctly implemented your API, the `/docs` endpoint will show you an example of the payload expected by each of your endpoints.
 
 Finally, we will create a test for each endpoint. To do this, we will use the `client` fixture to make requests to the API and check the response.

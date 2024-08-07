@@ -18,7 +18,19 @@ from src.config import METRICS_DIR, MODELS_DIR
 model_wrappers_dict: Dict[str, Dict[str, dict]] = {"tabular": {}, "image": {}}
 
 
-def file_to_image(file):
+def file_to_image(file: bytes):
+    """
+    Reads an image file and formats it for the model.
+
+    Parameters
+    ----------
+    file:
+        bytes: The image file to classify.
+
+    Returns
+    -------
+    Tensor: The image formatted for the model.
+    """
     image = tf.io.decode_image(file, channels=3, dtype=tf.float32)
     return tf.image.resize(image, [224, 224])
 
@@ -108,7 +120,7 @@ def _get_tabular_models_list(model_type: str | None = None):
     }
 
 
-@app.post("/models/tabular/{model_type}", tags=["Prediction"])
+@app.post("/predict/tabular/{model_type}", tags=["Prediction"])
 @track_emissions(
     project_name="iris-prediction",
     measure_power_secs=1,
@@ -165,7 +177,7 @@ def _predict_tabular(model_type: str, payload: IrisPredictionPayload):
     save_to_file=True,
     output_dir=METRICS_DIR,
 )
-@app.post("/models/image/", tags=["Prediction"])
+@app.post("/predict/image/", tags=["Prediction"])
 async def _predict_image(file: UploadFile):
     """
     Classifies ImageNet images using a pre-trained MobileNetV3 model.
@@ -175,6 +187,7 @@ async def _predict_image(file: UploadFile):
     file : UploadFile
         The image to classify.
     """
+    # Read the image file and format it for the model
     image_stream = await file.read()
     image = file_to_image(image_stream)
     await file.close()
