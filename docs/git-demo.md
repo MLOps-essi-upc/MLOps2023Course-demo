@@ -1,4 +1,4 @@
-# Git demo for the MLOps 2023-24 course <!-- omit in toc -->
+# Git demo<!-- omit in toc -->
 In this demo we will see the main features of [Git](https://git-scm.com/), a version control system.
 
 ## Table of contents <!-- omit in toc -->

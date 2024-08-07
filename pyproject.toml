@@ -18,6 +18,12 @@ fastapi = "<0.120"
 uvicorn = {extras = ["standard"], version = "<0.31"}
 numpy = "<2"
 great-expectations = "<0.19"
+debugpy = "1.8.2"
+pyyaml = "^6.0.2"
+requests = "^2.32.3"
+deepchecks = {version = "^0.18", extras = ["vision"]}
+torchvision = {version = "^0.19.0+cu121", source = "pytorch"}
+pydantic = "^2.8.2"
 opencv-python = "^4.10.0.84"
 tensorflow = ">2.0,<2.18.0"
 tensorflow-hub = ">0.5"
@@ -35,6 +41,12 @@ httpx = "<0.28"
 deptry = "^0.18.0"
 pre-commit = "^3.8.0"
 
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu121"
+priority = "supplemental"
 
 [tool.coverage.run]
 omit = ["src/prepare.py", "src/evaluate.py", "src/train.py", "src/train_api_demo_models.py"]

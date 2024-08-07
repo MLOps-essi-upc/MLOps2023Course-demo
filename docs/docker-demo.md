@@ -1,4 +1,4 @@
-# Docker demo for the MLOps 2023-24 course <!-- omit in toc -->
+# Docker demo<!-- omit in toc -->
 In this demo we will see how to create a Docker container and run our FastAPI app on it.
 
 ## Contents <!-- omit in toc -->

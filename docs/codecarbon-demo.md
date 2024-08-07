@@ -1,4 +1,4 @@
-# CodeCarbon demo for the MLOps 2023-24 course <!-- omit in toc -->
+# CodeCarbon demo<!-- omit in toc -->
 In this demo we will see the main features of [CodeCarbon](https://mlco2.github.io/codecarbon/index.html), a Python
 package to track the carbon emissions of machine learning projects.
 
