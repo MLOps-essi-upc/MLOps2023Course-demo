@@ -78,17 +78,28 @@ async def _index():
 def _get_tabular_models_list(model_type: str | None = None):
     """Return the list of available models"""
 
-    available_models = [
-        {
-            "type": model["type"],
-            "parameters": model["params"],
-            "accuracy": model["metrics"],
-        }
-        for model in model_wrappers_dict["tabular"].values()
-    ]
-
-    if not available_models and model_type is not None:
-        raise HTTPException(status_code=HTTPStatus.BAD_REQUEST, detail="Type not found")
+    if model_type is not None:
+        model = model_wrappers_dict["tabular"].get(model_type, None)
+        if model is None:
+            raise HTTPException(
+                status_code=HTTPStatus.BAD_REQUEST, detail="Type not found"
+            )
+        available_models = [
+            {
+                "type": model["type"],
+                "parameters": model["params"],
+                "accuracy": model["metrics"],
+            }
+        ]
+    else:
+        available_models = [
+            {
+                "type": model["type"],
+                "parameters": model["params"],
+                "accuracy": model["metrics"],
+            }
+            for model in model_wrappers_dict["tabular"].values()
+        ]
 
     return {
         "message": HTTPStatus.OK.phrase,
@@ -168,12 +179,6 @@ async def _predict_image(file: UploadFile):
     image = file_to_image(image_stream)
     await file.close()
 
-    # Decode image
-    # imgage_array = np.fromstring(image_stream, np.uint8)
-    # img_np = cv2.imdecode(imgage_array, cv2.IMREAD_COLOR)
-    # img_np = cv2.cvtColor(img_np, cv2.COLOR_BGR2RGB)
-
-    # tf_image = tf.image.decode_image(image_stream, channels=3, dtype=tf.float32)
     cv_model = model_wrappers_dict["image"]["mobilenet_v3"]["model"]
     predictions = cv_model(tf.expand_dims(image, axis=0))
     predicted_label = tf.keras.applications.mobilenet_v3.decode_predictions(

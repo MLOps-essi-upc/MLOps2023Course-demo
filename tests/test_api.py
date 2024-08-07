@@ -5,6 +5,7 @@ import pytest
 from fastapi.testclient import TestClient
 
 from src.app.api import app
+from src.config import TEST_DATA_DIR
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -98,15 +99,25 @@ def test_model_prediction_not_found(client, payload):
     assert response.json()["detail"] == "Model not found"
 
 
-def test_classify_image(client):
-    image = cv2.imread("tests/test-data/tree_frog.JPEG")
+def read_image(image_path):
+    image = cv2.imread(str(image_path))
+    image_name = image_path.stem
+    class_name = image_name[image_name.find("_") + 1 :]
 
+    return image, class_name
+
+
+@pytest.mark.parametrize(
+    ["sample", "expected"],
+    [read_image(image_path) for image_path in TEST_DATA_DIR.glob("*.JPEG")],
+)
+def test_classify_image(client, sample, expected):
     response = client.post(
         "/models/image",
         files={
             "file": (
                 "image.jpg",
-                cv2.imencode(".jpg", image)[1].tobytes(),
+                cv2.imencode(".jpg", sample)[1].tobytes(),
                 "image/jpeg",
             )
         },
@@ -117,4 +128,4 @@ def test_classify_image(client):
     assert response.status_code == 200
     assert json["message"] == "OK"
     assert json["status-code"] == 200
-    assert json["data"]["predicted_class"] == "tree_frog"
+    assert json["data"]["predicted_class"] == expected

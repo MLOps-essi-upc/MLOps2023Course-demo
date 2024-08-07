@@ -25,15 +25,15 @@ def iowa_validation_data():
 
 
 @pytest.mark.parametrize(
-    "input, expected",
+    "sample, expected",
     [
         ([[6.4, 2.8, 5.6, 2.1]], 2),
         ([[5.0, 2.3, 3.3, 1.0]], 1),
         ([[4.9, 2.5, 4.5, 1.7]], 2),
     ],
 )
-def test_iris_lr_model(lr_model, input, expected):
-    assert lr_model.predict(input) == expected
+def test_iris_lr_model(lr_model, sample, expected):
+    assert lr_model.predict(sample) == expected
 
 
 def test_iowa_model(iowa_model, iowa_validation_data):
