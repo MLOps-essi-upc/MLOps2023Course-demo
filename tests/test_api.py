@@ -8,6 +8,14 @@ from src.app.api import app
 from src.config import TEST_DATA_DIR
 
 
+def read_image(image_path):
+    image = cv2.imread(str(image_path))
+    image_name = image_path.stem
+    class_name = image_name[image_name.find("_") + 1 :]
+
+    return image, class_name
+
+
 @pytest.fixture(scope="module", autouse=True)
 def client():
     # Use the TestClient with a `with` statement to trigger the startup and shutdown events.
@@ -85,7 +93,7 @@ def test_get_one_model_not_found(client):
 
 
 def test_model_prediction(client, payload):
-    response = client.post("/models/tabular/LogisticRegression", json=payload)
+    response = client.post("/predict/tabular/LogisticRegression", json=payload)
     json = response.json()
     assert response.status_code == 200
     assert json["data"]["prediction"] == 2
@@ -94,17 +102,9 @@ def test_model_prediction(client, payload):
 
 
 def test_model_prediction_not_found(client, payload):
-    response = client.post("/models/tabular/RandomForestClassifier", json=payload)
+    response = client.post("/predict/tabular/RandomForestClassifier", json=payload)
     assert response.status_code == HTTPStatus.BAD_REQUEST
     assert response.json()["detail"] == "Model not found"
-
-
-def read_image(image_path):
-    image = cv2.imread(str(image_path))
-    image_name = image_path.stem
-    class_name = image_name[image_name.find("_") + 1 :]
-
-    return image, class_name
 
 
 @pytest.mark.parametrize(
@@ -113,7 +113,7 @@ def read_image(image_path):
 )
 def test_classify_image(client, sample, expected):
     response = client.post(
-        "/models/image",
+        "/predict/image",
         files={
             "file": (
                 "image.jpg",
