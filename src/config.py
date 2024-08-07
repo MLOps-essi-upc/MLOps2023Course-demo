@@ -20,4 +20,7 @@ MODELS_DIR = PROJ_ROOT / "models"
 REPORTS_DIR = PROJ_ROOT / "reports"
 FIGURES_DIR = REPORTS_DIR / "figures"
 
+TEST_DIR = PROJ_ROOT / "tests"
+TEST_DATA_DIR = TEST_DIR / "data"
+
 logging.basicConfig(level=logging.INFO)
