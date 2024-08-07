@@ -17,6 +17,12 @@ codecarbon = "<2.6"
 fastapi = "<0.120"
 uvicorn = {extras = ["standard"], version = "<0.31"}
 great-expectations = "<0.19"
+debugpy = "1.8.2"
+pyyaml = "^6.0.2"
+requests = "^2.32.3"
+deepchecks = {version = "^0.18", extras = ["vision"]}
+torchvision = {version = "^0.19.0+cu121", source = "pytorch"}
+pydantic = "^2.8.2"
 
 [tool.poetry.group.dev.dependencies]
 black = "<24.9"
@@ -27,6 +33,12 @@ pytest = "<8.4"
 pytest-cov = "<5.1"
 httpx = "<0.28"
 deptry = "^0.18.0"
+
+
+[[tool.poetry.source]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu121"
+priority = "supplemental"
 
 [tool.coverage.run]
 omit = ["src/prepare.py", "src/evaluate.py", "src/train.py", "src/train_api_demo_models.py"]
