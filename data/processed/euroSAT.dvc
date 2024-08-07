@@ -1,0 +1,6 @@
+outs:
+- md5: 241dbad0ab33a0bc95f3dfd76ebc4273.dir
+  size: 6826261
+  nfiles: 1990
+  hash: md5
+  path: euroSAT
