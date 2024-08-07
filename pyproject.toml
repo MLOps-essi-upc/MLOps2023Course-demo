@@ -25,7 +25,7 @@ deepchecks = {version = "^0.18", extras = ["vision"]}
 torchvision = {version = "^0.19.0+cu121", source = "pytorch"}
 pydantic = "^2.8.2"
 opencv-python = "^4.10.0.84"
-tensorflow = ">2.10,<2.18.0"
+tensorflow = ">2.0,<2.18.0"
 tensorflow-hub = ">0.5"
 python-multipart = "^0.0.9"
 pillow = "^10.4.0"
