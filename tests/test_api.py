@@ -1,9 +1,19 @@
 from http import HTTPStatus
 
+import cv2
 import pytest
 from fastapi.testclient import TestClient
 
 from src.app.api import app
+from src.config import TEST_DATA_DIR
+
+
+def read_image(image_path):
+    image = cv2.imread(str(image_path))
+    image_name = image_path.stem
+    class_name = image_name[image_name.find("_") + 1 :]
+
+    return image, class_name
 
 
 @pytest.fixture(scope="module", autouse=True)
@@ -36,7 +46,7 @@ def test_root(client):
 
 
 def test_get_all_models(client):
-    response = client.get("/models")
+    response = client.get("/models/tabular")
     json = response.json()
     assert response.status_code == 200
     assert json["data"] == [
@@ -62,7 +72,7 @@ def test_get_all_models(client):
 
 
 def test_get_one_model(client):
-    response = client.get("/models?model_type=SVC")
+    response = client.get("/models/tabular?model_type=SVC")
     json = response.json()
     assert response.status_code == 200
     assert json["data"] == [
@@ -77,13 +87,13 @@ def test_get_one_model(client):
 
 
 def test_get_one_model_not_found(client):
-    response = client.get("/models?model_type=RandomForestClassifier")
+    response = client.get("/models/tabular?model_type=RandomForestClassifier")
     assert response.status_code == 400
     assert response.json()["detail"] == "Type not found"
 
 
 def test_model_prediction(client, payload):
-    response = client.post("/models/LogisticRegression", json=payload)
+    response = client.post("/predict/tabular/LogisticRegression", json=payload)
     json = response.json()
     assert response.status_code == 200
     assert json["data"]["prediction"] == 2
@@ -92,6 +102,30 @@ def test_model_prediction(client, payload):
 
 
 def test_model_prediction_not_found(client, payload):
-    response = client.post("/models/RandomForestClassifier", json=payload)
+    response = client.post("/predict/tabular/RandomForestClassifier", json=payload)
     assert response.status_code == HTTPStatus.BAD_REQUEST
     assert response.json()["detail"] == "Model not found"
+
+
+@pytest.mark.parametrize(
+    ["sample", "expected"],
+    [read_image(image_path) for image_path in TEST_DATA_DIR.glob("*.JPEG")],
+)
+def test_classify_image(client, sample, expected):
+    response = client.post(
+        "/predict/image",
+        files={
+            "file": (
+                "image.jpg",
+                cv2.imencode(".jpg", sample)[1].tobytes(),
+                "image/jpeg",
+            )
+        },
+        timeout=30,
+    )
+
+    json = response.json()
+    assert response.status_code == 200
+    assert json["message"] == "OK"
+    assert json["status-code"] == 200
+    assert json["data"]["predicted_class"] == expected

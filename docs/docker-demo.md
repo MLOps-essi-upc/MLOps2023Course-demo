@@ -25,12 +25,12 @@ Create a Dockerfile in the same directory as your app.py file:
 Example:
 ```Dockerfile
 FROM python:3.10
-ENV PYTHONUNBUFFERED 1 
-EXPOSE 8000 
-WORKDIR /app 
+ENV PYTHONUNBUFFERED 1
+EXPOSE 8000
+WORKDIR /app
 COPY ./requirements.txt .
-COPY . /app 
-RUN pip install -r requirements.txt 
+COPY . /app
+RUN pip install -r requirements.txt
 CMD ["uvicorn", "--host", "0.0.0.0", "--port", "8000", "app.api_code:app"]
 ```
 
@@ -48,5 +48,3 @@ This command starts a Docker container named my-container and maps port 8000 on 
 
 ## Try the API
 See [fastapi-demo](./fastapi-demo.md/)
-
-

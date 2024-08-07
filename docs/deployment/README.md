@@ -1,5 +1,5 @@
 ## Guides
-1. [Deploy ML models in a cloud provider (General)](01_deploy_general.md). Guide to deploy ML models using an API in a 
+1. [Deploy ML models in a cloud provider (General)](01_deploy_general.md). Guide to deploy ML models using an API in a
 cloud provider.
 3. [Deploy in Virtech](02_deploy_fib.md). Guide to deploy ML models using an API in Virtech, the UPC cloud provider.
 4. [Deploy in AWS](03_deploy_aws.md). Guide to deploy ML models using an API in an AWS VM.

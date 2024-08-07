@@ -31,7 +31,7 @@ For more information about the free-tier options of each cloud provider, please 
 
 ## Step 3: Connect via SSH to VM
 
-1.  Generate your SSH keys 
+1.  Generate your SSH keys
 ```shell
 ssh-keygen -t ed25519 -f ~/.ssh/my-key -C "my_user@my_hostname"
 ```
@@ -66,7 +66,7 @@ python3 -m venv venv
 source venv/bin/activate
 ```
 
-3. Install the necessary dependencies and packages required for running the API. 
+3. Install the necessary dependencies and packages required for running the API.
 
 ```shell
 ./scripts/setenv.sh

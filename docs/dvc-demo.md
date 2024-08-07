@@ -134,7 +134,7 @@ The options used in the command are the following:
 source code itself is marked as a dependency as well. If any of these files change, DVC will know that this stage needs
 to be reproduced when the pipeline is executed.
 * `-o`: specify a file or directory that is the result of running the command.
-* The last line, `python -m src.features.prepare` is the command to run in this stage 
+* The last line, `python -m src.features.prepare` is the command to run in this stage
 
 > **Note:** DVC uses the pipeline definition to automatically track the data used and produced by any stage, so there's no
 need to manually run `dvc add` for data/prepared!

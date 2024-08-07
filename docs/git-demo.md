@@ -74,7 +74,7 @@ The `-m` flag is used to specify the commit message. If we do not use this flag,
 commit message.
 
 ## Configuring a remote repository
-Now that we have our local repository, we can configure a remote repository to store our commits. This can be done with 
+Now that we have our local repository, we can configure a remote repository to store our commits. This can be done with
 the following command:
 ```bash
 git remote add origin url-to-remote-repository
