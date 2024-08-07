@@ -1,4 +1,4 @@
-# DVC demo for the MLOps 2023-24 course <!-- omit in toc -->
+# DVC demo<!-- omit in toc -->
 In this demo we will see the main features of [DVC](https://dvc.org/) to version control the data and the models of a 
 simple machine learning project.
 

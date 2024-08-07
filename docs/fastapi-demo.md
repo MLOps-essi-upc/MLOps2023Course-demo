@@ -1,4 +1,4 @@
-# FastAPI demo for the MLOps 2023-24 course <!-- omit in toc -->
+# FastAPI demo<!-- omit in toc -->
 In this demo we will see the main features of [FastAPI](https://fastapi.tiangolo.com/) to create an API for a simple
 machine learning project.
 

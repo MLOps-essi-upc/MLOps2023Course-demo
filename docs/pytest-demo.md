@@ -1,4 +1,4 @@
-# Pytest demo for the MLOps 2023-24 course <!-- omit in toc -->
+# Pytest demo <!-- omit in toc -->
 In this demo we will see the main features of [Pytest](https://docs.pytest.org/en/latest/) to test a simple machine
 learning project.
 

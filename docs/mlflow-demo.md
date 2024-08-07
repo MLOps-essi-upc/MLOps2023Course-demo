@@ -1,4 +1,4 @@
-# MLflow demo for the MLOps 2023-24 course <!-- omit in toc -->
+# MLflow demo <!-- omit in toc -->
 In this demo we will see the main features of [MLflow](https://mlflow.org/) to track the experiments of a simple machine
 learning project.
 

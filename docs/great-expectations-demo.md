@@ -1,4 +1,4 @@
-# Great Expectations demo for the MLOps 2023-24 course <!-- omit in toc -->
+# Great Expectations demo<!-- omit in toc -->
 In this demo we will see the main features of [Great Expectations](https://greatexpectations.io/) to validate data.
 
 ## Contents <!-- omit in toc -->
