@@ -18,7 +18,7 @@ fastapi = "<0.120"
 uvicorn = {extras = ["standard"], version = "<0.31"}
 numpy = "<2"
 great-expectations = "<0.19"
-debugpy = "1.8.2"
+debugpy = "1.8.5"
 pyyaml = "^6.0.2"
 requests = "^2.32.3"
 deepchecks = {version = "^0.18", extras = ["vision"]}
